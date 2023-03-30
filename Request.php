@@ -103,15 +103,14 @@ class Request implements RequestInterface
         // TODO: Implement withMethod() method.
     }
 
-    public function getUri() : UriInterface
+    public function getUri() : ?UriInterface
     {
-        return $this->uri;
-//        return $this->server["REQUEST_URI"] ?? "/";
+        return $this->uri ?? null;
     }
 
     public function withUri(UriInterface $uri, $preserveHost = false)
     {
-        $this->uri = $uri;
-        // TODO: Implement withUri() method.
+        $newRequest = clone $this;
+        $newRequest->uri = $uri;
     }
 }

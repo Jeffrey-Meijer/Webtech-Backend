@@ -3,15 +3,12 @@
 namespace Backend;
 
 require "./Request.php";
-require "./Response.php";
+require_once "./RequestHandler.php";
+$request = Req::fromGlobals();
 
-$request = Request::fromGlobals();
-var_dump($request);
-$response = new Response(
-    "This is a response for the request going to ". $request->getUri()->getPath(),
-    200,
-    ['content-type' => 'text/html']
-);
+$requestHandler = new RequestHandler();
+
+$requestHandler->handle($request);
 
 $response->send();
 
