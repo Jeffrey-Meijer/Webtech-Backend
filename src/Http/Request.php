@@ -2,10 +2,6 @@
 
 namespace Webtech\Http;
 
-//require_once "Http/Message/RequestInterface.php";
-//require_once "Http/Message/UriInterface.php";
-
-
 use Webtech\Http\Message\RequestInterface;
 use Webtech\Http\Message\UriInterface;
 use Webtech\Http\Message\StreamInterface;

@@ -5,8 +5,6 @@ namespace Webtech\Http;
 use Webtech\Http\Message\ResponseInterface;
 use Webtech\Http\Message\StreamInterface;
 
-//require "Http/Message/ResponseInterface.php";
-
 class Response implements ResponseInterface
 {
 

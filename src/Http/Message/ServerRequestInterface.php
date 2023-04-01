@@ -1,8 +1,6 @@
 <?php
 namespace Webtech\Http\Message;
 
-require_once "MessageInterface.php";
-
 /**
  * Representation of an incoming, server-side HTTP request.
  *

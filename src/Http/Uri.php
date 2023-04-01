@@ -2,8 +2,6 @@
 namespace Webtech\Http;
 use Webtech\Http\Message\UriInterface;
 
-//require_once 'Http/Message/UriInterface.php';
-
 class Uri implements UriInterface
 {
     private string $scheme;
