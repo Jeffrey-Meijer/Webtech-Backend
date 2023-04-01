@@ -4,11 +4,13 @@ namespace Backend;
 
 require "./Request.php";
 require_once "./RequestHandler.php";
-$request = Req::fromGlobals();
-
+require_once "./ResponseFactory.php";
+$request = Request::fromGlobals();
 $requestHandler = new RequestHandler();
 
-$requestHandler->handle($request);
+$response = $requestHandler->handle($request);
 
 $response->send();
+
+//$response->send();
 

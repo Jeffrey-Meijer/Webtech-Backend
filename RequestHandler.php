@@ -1,6 +1,7 @@
 <?php
 namespace Backend;
 
+use Backend\Http\Message\RequestInterface;
 use Backend\Http\Message\ResponseInterface;
 use Backend\Http\Message\ServerRequestInterface;
 use Backend\Http\Server\RequestHandlerInterface;
@@ -11,14 +12,17 @@ require_once "./Http/Message/ServerRequestInterface.php";
 require_once "./Http/Server/RequestHandlerInterface.php";
 class RequestHandler implements RequestHandlerInterface {
 
-    public function handle(ServerRequestInterface $request): ResponseInterface
+    public function handle(RequestInterface $request): ResponseInterface
     {
-        return new Response(
-            "This is a response for the request going to idk",
-            200,
-            $request->getHeaders()
-        );
+        // Handle the request and return a response
+        $response = new ResponseFactory();
+        $response = $response->createResponse();
+        return $response->withStatus(200);
+    }
 
-        // TODO: Implement handle() method.
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        // Handle the request using the next middleware in the chain or the final request handler
+        return $this->handle($request);
     }
 }

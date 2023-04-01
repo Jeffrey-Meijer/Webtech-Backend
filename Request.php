@@ -23,6 +23,10 @@ class Request implements RequestInterface
         $this->post = $post;
         $this->files = $files;
         $this->server = $server;
+        var_dump($this->get);
+        var_dump($this->post);
+        var_dump($this->files);
+        var_dump($this->server);
     }
 
     public static function fromGlobals() : self {

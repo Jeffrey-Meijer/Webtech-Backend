@@ -133,7 +133,9 @@ class Response implements ResponseInterface
 
     public function withStatus($code, $reasonPhrase = '')
     {
-        // TODO: Implement withStatus() method.
+        $newResponse = clone $this;
+        $newResponse->status = $code;
+        return $newResponse;
     }
 
     public function getReasonPhrase()

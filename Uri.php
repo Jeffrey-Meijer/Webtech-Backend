@@ -2,47 +2,67 @@
 namespace Backend;
 use Backend\Http\Message\UriInterface;
 require_once 'Http/Message/UriInterface.php';
-class Uri implements UriInterface {
 
-    public function getScheme()
+class Uri implements UriInterface
+{
+    private string $scheme;
+    private string $host;
+    private ?int $port;
+    private string $path;
+    private string $query;
+    private string $fragment;
+
+    public function __construct(string $scheme, string $host, ?int $port, string $path = '/', string $query = '', string $fragment = '')
     {
-        // TODO: Implement getScheme() method.
+        $this->scheme = $scheme;
+        $this->host = $host;
+        $this->port = $port;
+        $this->path = $path;
+        $this->query = $query;
+        $this->fragment = $fragment;
     }
 
-    public function getAuthority()
+    public function getScheme(): string
     {
-        // TODO: Implement getAuthority() method.
+        return $this->scheme;
     }
 
+    public function getAuthority(): string
+    {
+        $authority = $this->host;
+        if ($this->port) {
+            $authority .= ':' . $this->port;
+        }
+        return $authority;
+    }
+
+    public function getHost(): string
+    {
+        return $this->host;
+    }
+
+    public function getPort(): ?int
+    {
+        return $this->port;
+    }
+
+    public function getPath(): string
+    {
+        return $this->path;
+    }
+
+    public function getQuery(): string
+    {
+        return $this->query;
+    }
+
+    public function getFragment(): string
+    {
+        return $this->fragment;
+    }
     public function getUserInfo()
     {
         // TODO: Implement getUserInfo() method.
-    }
-
-    public function getHost()
-    {
-        // TODO: Implement getHost() method.
-    }
-
-    public function getPort()
-    {
-        // TODO: Implement getPort() method.
-    }
-
-    public function getPath()
-    {
-
-        // TODO: Implement getPath() method.
-    }
-
-    public function getQuery()
-    {
-        // TODO: Implement getQuery() method.
-    }
-
-    public function getFragment()
-    {
-        // TODO: Implement getFragment() method.
     }
 
     public function withScheme($scheme)
