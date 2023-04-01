@@ -1,10 +1,10 @@
 <?php
 
-namespace Backend;
+require './vendor/autoload.php';
 
-require "./Request.php";
-require_once "./RequestHandler.php";
-require_once "./ResponseFactory.php";
+use Webtech\Http\Request;
+use Webtech\Http\RequestHandler;
+
 $request = Request::fromGlobals();
 $requestHandler = new RequestHandler();
 
@@ -12,5 +12,5 @@ $response = $requestHandler->handle($request);
 
 $response->send();
 
-//$response->send();
+
 
