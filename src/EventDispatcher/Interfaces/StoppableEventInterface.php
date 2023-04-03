@@ -1,5 +1,5 @@
 <?php
-namespace Backend\EventDispatcher;
+namespace Webtech\EventDispatcher\Interfaces;
 
 /**
  * An Event whose processing may be interrupted when the event has been handled.

@@ -19,10 +19,7 @@ class Request implements RequestInterface
         $this->post = $post;
         $this->files = $files;
         $this->server = $server;
-        var_dump($this->get);
-        var_dump($this->post);
-        var_dump($this->files);
-        var_dump($this->server);
+        $this->uri = new Uri($this->server["HTTPS"] ?? "http", $this->server["SERVER_NAME"], $this->server["SERVER_PORT"] ?? 80, $this->server["REQUEST_URI"]);
     }
 
     public static function fromGlobals() : self {

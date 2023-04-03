@@ -1,5 +1,5 @@
 <?php
-namespace Backend\EventDispatcher;
+namespace Webtech\EventDispatcher\Interfaces;
 
 /**
  * Mapper from an event to the listeners that are applicable to that event.

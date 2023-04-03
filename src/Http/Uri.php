@@ -101,6 +101,6 @@ class Uri implements UriInterface
 
     public function __toString()
     {
-        // TODO: Implement __toString() method.
+        return $this->scheme . "://" . $this->host . ":" . $this->port . $this->path;
     }
 }

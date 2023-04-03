@@ -1,5 +1,5 @@
 <?php
-namespace Backend\EventDispatcher;
+namespace Webtech\EventDispatcher\Interfaces;
 
 /**
  * Defines a dispatcher for events.
