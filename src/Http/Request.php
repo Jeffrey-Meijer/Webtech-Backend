@@ -13,18 +13,21 @@ class Request implements RequestInterface
     private array $post;
     private array $files;
     private array $server;
+    public RequestAttribute $attributes;
 
     public function __construct($get, $post, $files, $server) {
         $this->get = $get;
         $this->post = $post;
         $this->files = $files;
         $this->server = $server;
+        $this->attributes = new RequestAttribute();
         $this->uri = new Uri($this->server["HTTPS"] ?? "http", $this->server["SERVER_NAME"], $this->server["SERVER_PORT"] ?? 80, $this->server["REQUEST_URI"]);
     }
 
     public static function fromGlobals() : self {
         return new Request($_GET, $_POST, $_FILES, $_SERVER);
     }
+
     public function getProtocolVersion() : string
     {
         return $this->server["SERVER_PROTOCOL"] || null;
@@ -72,6 +75,7 @@ class Request implements RequestInterface
 
     public function getBody()
     {
+        return $this->get;
         // TODO: Implement getBody() method.
     }
 

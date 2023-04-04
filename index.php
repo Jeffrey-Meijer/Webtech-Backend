@@ -7,17 +7,32 @@ use Webtech\EventDispatcher\Events\RequestEvent;
 use Webtech\EventDispatcher\ListenerProvider;
 use Webtech\Http\Request;
 use Webtech\Http\RequestHandler;
+use Webtech\Http\RouteFactory;
+use Webtech\Controllers\IndexController;
+use Webtech\Controllers\UsersController;
+use Webtech\Controllers\GradesController;
+use Webtech\Models\IndexModel;
 
 function onRequest($event) {
-    $routes = [
-        "/" => "controller1",
-        "/key" => "controller2",
-    ];
+    $found = false;
     $path = $event->getRequest()->getUri()->getPath();
-    if (key_exists($path, $routes)) {
-        echo $routes[$path]; // Gets the controller's view
-    } else {
-        echo "Route not found!"; // Needs to return a 404 view
+    $method = $event->getRequest()->getMethod();
+    $routeFactory = new RouteFactory();
+    $routeFactory->createRoute("index", "GET", "/", new IndexController(new IndexModel(), $event));
+    $routeFactory->createRoute("users", "GET", "/users", new UsersController("model2", $event));
+    $routeFactory->createRoute("grades", "GET", "/grades", new GradesController("model3", $event));
+
+    $routes = $routeFactory->getRoutes();
+    $event->getRequest()->attributes->set('routes', $routes);
+    foreach ($routes as $route) {
+        if ($route->getPath() == $path && $route->getMethod() == $method) {
+            $found = true;
+            $route->getController()->view();
+            break;
+        }
+    }
+    if (!$found) {
+        echo "404!";
     }
 }
 
