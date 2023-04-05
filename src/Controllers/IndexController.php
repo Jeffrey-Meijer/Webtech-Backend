@@ -1,10 +1,19 @@
 <?php
+
 namespace Webtech\Controllers;
 
-class IndexController extends GenericController {
-    public function view() {
+class IndexController extends GenericController
+{
+    public function view()
+    {
         $data = ["name" => "DIT IS NICE!!"];
+        echo $this->templateLoader->load("home", $data);
+    }
 
-        require_once $this->templateDIR . "/home.php";
+    private function IndexID()
+    {
+        $data = ["ID" => "SECRET ID :)"];
+
+        echo $this->templateLoader->load("home", $data);
     }
 }

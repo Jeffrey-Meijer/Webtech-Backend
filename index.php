@@ -2,25 +2,31 @@
 
 require './vendor/autoload.php';
 
+use Webtech\Controllers\GradesController;
+use Webtech\Controllers\IndexController;
+use Webtech\Controllers\UsersController;
 use Webtech\EventDispatcher\EventDispatcher;
 use Webtech\EventDispatcher\Events\RequestEvent;
 use Webtech\EventDispatcher\ListenerProvider;
 use Webtech\Http\Request;
 use Webtech\Http\RequestHandler;
 use Webtech\Http\RouteFactory;
-use Webtech\Controllers\IndexController;
-use Webtech\Controllers\UsersController;
-use Webtech\Controllers\GradesController;
+use Webtech\Http\TemplateLoader;
+use Webtech\Models\GradesModel;
 use Webtech\Models\IndexModel;
+use Webtech\Models\UsersModel;
 
-function onRequest($event) {
+function onRequest($event)
+{
     $found = false;
     $path = $event->getRequest()->getUri()->getPath();
     $method = $event->getRequest()->getMethod();
     $routeFactory = new RouteFactory();
-    $routeFactory->createRoute("index", "GET", "/", new IndexController(new IndexModel(), $event));
-    $routeFactory->createRoute("users", "GET", "/users", new UsersController("model2", $event));
-    $routeFactory->createRoute("grades", "GET", "/grades", new GradesController("model3", $event));
+    $templateLoader = new TemplateLoader("./src/Views");
+    $routeFactory->createRoute("home", "GET", "/", new IndexController(new IndexModel(), $templateLoader, $event));
+    $routeFactory->createRoute("users", "GET", "/users", new UsersController(new UsersModel(), $templateLoader, $event));
+    $routeFactory->createRoute("grades", "GET", "/grades", new GradesController(new GradesModel(), $templateLoader, $event));
+    $routeFactory->createRoute("test", "POST", "/post", new GradesController(new GradesModel(), $templateLoader, $event));
 
     $routes = $routeFactory->getRoutes();
     $event->getRequest()->attributes->set('routes', $routes);

@@ -1,3 +1,3 @@
 <html>
-    <h1><?= $data["name"] ?></h1>
+<h1>{{name}}</h1>
 </html>

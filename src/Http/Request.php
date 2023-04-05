@@ -3,8 +3,8 @@
 namespace Webtech\Http;
 
 use Webtech\Http\Message\RequestInterface;
-use Webtech\Http\Message\UriInterface;
 use Webtech\Http\Message\StreamInterface;
+use Webtech\Http\Message\UriInterface;
 
 class Request implements RequestInterface
 {
@@ -15,20 +15,22 @@ class Request implements RequestInterface
     private array $server;
     public RequestAttribute $attributes;
 
-    public function __construct($get, $post, $files, $server) {
+    public function __construct($get, $post, $files, $server)
+    {
         $this->get = $get;
         $this->post = $post;
         $this->files = $files;
         $this->server = $server;
         $this->attributes = new RequestAttribute();
-        $this->uri = new Uri($this->server["HTTPS"] ?? "http", $this->server["SERVER_NAME"], $this->server["SERVER_PORT"] ?? 80, $this->server["REQUEST_URI"]);
+        $this->uri = new Uri($this->server["HTTPS"] ?? "http", $this->server["SERVER_NAME"], $this->server["SERVER_PORT"] ?? 80, explode("?", $this->server["REQUEST_URI"])[0], $this->server["QUERY_STRING"] ?? '');
     }
 
-    public static function fromGlobals() : self {
+    public static function fromGlobals(): self
+    {
         return new Request($_GET, $_POST, $_FILES, $_SERVER);
     }
 
-    public function getProtocolVersion() : string
+    public function getProtocolVersion(): string
     {
         return $this->server["SERVER_PROTOCOL"] || null;
     }
@@ -94,7 +96,7 @@ class Request implements RequestInterface
         // TODO: Implement withRequestTarget() method.
     }
 
-    public function getMethod() : string
+    public function getMethod(): string
     {
         return $this->server["REQUEST_METHOD"] ?? "GET";
     }
@@ -104,7 +106,7 @@ class Request implements RequestInterface
         // TODO: Implement withMethod() method.
     }
 
-    public function getUri() : ?UriInterface
+    public function getUri(): ?UriInterface
     {
         return $this->uri ?? null;
     }
