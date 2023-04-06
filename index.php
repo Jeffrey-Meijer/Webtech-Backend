@@ -26,7 +26,6 @@ function onRequest($event)
     $routeFactory->createRoute("home", "GET", "/", new IndexController(new IndexModel(), $templateLoader, $event));
     $routeFactory->createRoute("users", "GET", "/users", new UsersController(new UsersModel(), $templateLoader, $event));
     $routeFactory->createRoute("grades", "GET", "/grades", new GradesController(new GradesModel(), $templateLoader, $event));
-    $routeFactory->createRoute("test", "POST", "/post", new GradesController(new GradesModel(), $templateLoader, $event));
 
     $routes = $routeFactory->getRoutes();
     $event->getRequest()->attributes->set('routes', $routes);

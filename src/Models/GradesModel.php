@@ -2,9 +2,13 @@
 
 namespace Webtech\Models;
 
-class GradesModel extends GenericModel {
-    public function __construct() {
+use Webtech\Connectors\Database;
+
+class GradesModel extends GenericModel
+{
+    public function __construct()
+    {
         $this->name = "GradesModel";
-        $this->connector = "MYSQL CONNECTION";
+        $this->connector = new Database();
     }
 }
