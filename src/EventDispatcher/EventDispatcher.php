@@ -5,6 +5,8 @@ use Webtech\EventDispatcher\Interfaces\EventDispatcherInterface;
 use Webtech\EventDispatcher\Interfaces\ListenerProviderInterface;
 
 class EventDispatcher implements EventDispatcherInterface {
+    private ListenerProviderInterface $listenerProvider;
+
     public function __construct(ListenerProviderInterface $listenerProvider) {
         $this->listenerProvider = $listenerProvider;
     }

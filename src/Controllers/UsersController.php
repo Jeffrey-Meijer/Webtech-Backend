@@ -6,6 +6,7 @@ class UsersController extends GenericController
 {
     public function view()
     {
-        echo $this->templateLoader->load("users");
+        $data = ["users" => $this->model->getAllUsers()];
+        echo $this->templateLoader->load("users", $data);
     }
 }

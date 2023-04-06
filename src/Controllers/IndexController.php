@@ -6,7 +6,8 @@ class IndexController extends GenericController
 {
     public function view()
     {
-        $data = ["name" => "DIT IS NICE!!"];
+//        $data = ["name" => "test", "films" => $this->getModel()->getTestData()];
+        $data = ["name" => "test", "films" => null];
         echo $this->templateLoader->load("home", $data);
     }
 
