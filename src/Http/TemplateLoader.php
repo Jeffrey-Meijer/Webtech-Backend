@@ -26,6 +26,18 @@ class TemplateLoader
         if (!file_exists($templatePath)) {
             throw new \Exception('Template not found!');
         }
-        include_once $templatePath;
+        // template loading
+        ob_start();
+        include $templatePath;
+        $output = ob_get_contents();
+        foreach ($data as $key => $value) {
+            ob_start();
+            include $this->templateDir . "/Templates/" . $value . ".php";
+            $content = ob_get_contents();
+            $output = str_replace("{{" . $key . "}}", $content, $output);
+            ob_end_clean();
+        }
+        ob_end_clean();
+        echo $output;
     }
 }

@@ -13,21 +13,24 @@ class Request implements RequestInterface
     private array $post;
     private array $files;
     private array $server;
+    private array $session;
     public RequestAttribute $attributes;
 
-    public function __construct($get, $post, $files, $server)
+    public function __construct($get, $post, $files, $server, $session)
     {
         $this->get = $get;
         $this->post = $post;
         $this->files = $files;
         $this->server = $server;
+        $this->session = $session;
         $this->attributes = new RequestAttribute();
         $this->uri = new Uri($this->server["HTTPS"] ?? "http", $this->server["SERVER_NAME"], $this->server["SERVER_PORT"] ?? 80, explode("?", $this->server["REQUEST_URI"])[0], $this->server["QUERY_STRING"] ?? '');
     }
 
     public static function fromGlobals(): self
     {
-        return new Request($_GET, $_POST, $_FILES, $_SERVER);
+        session_start(); // Starts session
+        return new Request($_GET, $_POST, $_FILES, $_SERVER, $_SESSION);
     }
 
     public function getProtocolVersion(): string
@@ -38,6 +41,22 @@ class Request implements RequestInterface
     public function withProtocolVersion($version)
     {
         // TODO: Implement withProtocolVersion() method.
+    }
+
+    public function getSessions() {
+        return $this->session;
+    }
+
+    public function getSession($variable) : ?string {
+        return $this->session[$variable] ?? null;
+    }
+
+    public function setSession($variable, $value) : void {
+        $this->session[$variable] = $value;
+    }
+
+    public function delSession($variable) : void {
+        if (isset($this->session[$variable])) unset($this->session[$variable]);
     }
 
     public function getHeaders()
@@ -115,5 +134,6 @@ class Request implements RequestInterface
     {
         $newRequest = clone $this;
         $newRequest->uri = $uri;
+        return $newRequest;
     }
 }

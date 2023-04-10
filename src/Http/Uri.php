@@ -86,7 +86,9 @@ class Uri implements UriInterface
 
     public function withPath($path)
     {
-        // TODO: Implement withPath() method.
+        $newUri = clone $this;
+        $newUri->path = $path;
+        return $newUri;
     }
 
     public function withQuery($query)

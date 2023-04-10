@@ -5,9 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1><?= $data["name"]?></h1>
-<?php foreach ($data["films"] as $film) : ?>
-    <li><?= $film["title"]?></li>
-<?php endforeach; ?>
+{{header}}
+{{footer}}
 </body>
 </html>

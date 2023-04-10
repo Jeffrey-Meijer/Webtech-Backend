@@ -5,6 +5,7 @@ namespace Webtech\Models;
 use Webtech\Http\ModelInterface;
 class GenericModel implements ModelInterface {
     protected $connector;
+    protected $orm;
     protected $name;
 
     public function create()

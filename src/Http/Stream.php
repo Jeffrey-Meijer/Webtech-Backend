@@ -5,6 +5,7 @@ use Webtech\Http\Message\StreamInterface;
 
 class Stream implements StreamInterface {
 
+    private $stream;
     public function __toString()
     {
         // TODO: Implement __toString() method.
@@ -57,6 +58,7 @@ class Stream implements StreamInterface {
 
     public function write($string)
     {
+        $this->stream = $string;
         // TODO: Implement write() method.
     }
 
@@ -67,6 +69,7 @@ class Stream implements StreamInterface {
 
     public function read($length)
     {
+        return $this->stream;
         // TODO: Implement read() method.
     }
 

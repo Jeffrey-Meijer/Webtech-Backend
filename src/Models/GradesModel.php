@@ -3,6 +3,8 @@
 namespace Webtech\Models;
 
 use Webtech\Connectors\Database;
+use Webtech\Connectors\Models\User_exams;
+use Webtech\Connectors\ORM;
 
 class GradesModel extends GenericModel
 {
@@ -10,5 +12,11 @@ class GradesModel extends GenericModel
     {
         $this->name = "GradesModel";
         $this->connector = new Database();
+        $this->orm = new ORM($this->connector->getConnection(), array(new User_exams()));
+    }
+
+    public function getAllGrades($uuid) {
+        $results = $this->orm->selectAll("user_exams", "user_id", $uuid);
+        return $results[0];
     }
 }

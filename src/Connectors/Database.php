@@ -24,6 +24,7 @@ class Database implements ConnectorInterface
 
         try {
             $this->pdo = new PDO($dsn, $this->username, $this->password, $options);
+//            return $this->pdo;
         } catch (PDOException $e) {
             throw new PDOException($e->getMessage(), (int)$e->getCode());
         }
