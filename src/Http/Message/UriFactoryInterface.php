@@ -2,7 +2,6 @@
 
 namespace Webtech\Http\Message;
 
-use Http\Message\UriInterface;
 use InvalidArgumentException;
 
 interface UriFactoryInterface

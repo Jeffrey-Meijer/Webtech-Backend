@@ -93,7 +93,7 @@ class ORM
 //        $stmt = $this->dbh->prepare("UPDATE $table SET ". implode(",", $keys) . " ")
 //    }
 
-    public function selectAll($table, $where, $value)
+    public function selectAll($table, $where, $value): array
     {
         $query = "SELECT * FROM $table WHERE $where = '$value'";
         $stmt = $this->dbh->prepare($query);
@@ -106,12 +106,7 @@ class ORM
         return $objects;
     }
 
-//    public function selectAllWhereNot($table, $where, $value)
-//    {
-//
-//    }
-
-    protected function mapToObject($row)
+    protected function mapToObject($row): Generic
     {
         $obj = clone $this->model;
         foreach ($row as $key => $value) {
@@ -126,7 +121,7 @@ class ORM
         return $obj;
     }
 
-    public function selectNotExists($table, $where, $subquery)
+    public function selectNotExists($table, $where, $subQuery): array
     {
         $whereClause = "";
         $values = [];
@@ -139,7 +134,7 @@ class ORM
         $whereClause = rtrim($whereClause, "AND ");
 
 
-        $query = "SELECT * FROM $table WHERE NOT EXISTS ($subquery) $whereClause";
+        $query = "SELECT * FROM $table WHERE NOT EXISTS ($subQuery) $whereClause";
 
         $stmt = $this->dbh->prepare($query);
 
@@ -158,7 +153,7 @@ class ORM
         return $objects;
     }
 
-    public function select($table, $where, $value)
+    public function select($table, $where, $value): ?Generic
     {
         $query = "SELECT * FROM $table WHERE $where = '$value'";
         $stmt = $this->dbh->prepare($query);
@@ -168,7 +163,7 @@ class ORM
         return $object;
     }
 
-    public function join($fromTable, $table, $joinCondition, $where = null, $whereCondition = null)
+    public function join($fromTable, $table, $joinCondition, $where = null, $whereCondition = null): array
     {
         $query = "SELECT * FROM " . $fromTable . " LEFT OUTER JOIN $table ON $joinCondition";
         if ($where != null && $whereCondition != null) {
@@ -186,7 +181,7 @@ class ORM
         return $objects;
     }
 
-    public function all($table)
+    public function all($table): array
     {
         $stmt = $this->dbh->prepare("SELECT * from $table");
         $stmt->execute();
@@ -198,44 +193,12 @@ class ORM
         return $objects;
     }
 
-    public function getModel()
+    public function getModel(): Generic
     {
         return $this->model;
     }
 
-//    protected function mapToObject($row) {
-//        $objs = [];
-//        foreach ($this->models as $model) {
-//            $obj = $model;
-//
-//            foreach ($row as $key => $value) {
-//                $obj->$key = $value;
-//            }
-//            $objs[] = $obj;
-//        }
-//        return $objs;
-//    }
-
-//    protected function mapToObject($row) {
-//        $objs = [];
-//        foreach ($this->models as $model) {
-//            $obj = $model;
-//
-//            foreach ($row as $key => $value) {
-//                $obj->$key = $value;
-//
-//                // Call a method on the model if it exists for the given property
-//                $method = "get" . ucfirst(str_replace("_id", "", $key));
-//                if (method_exists($model, $method)) {
-//                    $obj->$method = $model->$method($this->dbh);
-//                }
-//            }
-//            $objs[] = $obj;
-//        }
-//        return $objs;
-//    }
-
-    public function setModel($model)
+    public function setModel($model): void
     {
         $this->model = $model;
     }

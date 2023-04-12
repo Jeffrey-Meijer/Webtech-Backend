@@ -2,8 +2,6 @@
 
 namespace Webtech\Http\Message;
 
-use Http\Message\StreamInterface;
-use Http\Message\UploadedFileInterface;
 use InvalidArgumentException;
 
 use const UPLOAD_ERR_OK;

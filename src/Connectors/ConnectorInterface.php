@@ -6,7 +6,8 @@ use PDO;
 
 interface ConnectorInterface
 {
-//    public static function getInstance($host = null, $dbname = null, $username = null, $password = null): self;
-
+    /**
+     * @return PDO
+     */
     public function getConnection(): PDO;
 }

@@ -58,19 +58,19 @@ class Response implements ResponseInterface
         return $this;
     }
 
-    public function getProtocolVersion()
+    public function getProtocolVersion(): string
     {
         return $this->protocol;
     }
 
-    public function withProtocolVersion($version)
+    public function withProtocolVersion(string $version): static
     {
         $newResponse = clone $this;
         $newResponse->protocol = $version;
         return $newResponse;
     }
 
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->headers;
     }
@@ -80,7 +80,7 @@ class Response implements ResponseInterface
         $this->headers = $headers;
     }
 
-    public function hasHeader($name)
+    public function hasHeader(string $name): bool
     {
         foreach ($this->headers as $key => $value) {
             if ($name === $key) {
@@ -90,42 +90,49 @@ class Response implements ResponseInterface
         return false;
     }
 
-    public function getHeader($name)
+    public function getHeader(string $name): array
     {
         foreach ($this->headers as $key => $value) {
             if ($key === $name) {
                 return $value;
             }
         }
+        return [];
     }
 
-    public function getHeaderLine($name)
+    public function getHeaderLine(string $name): string
     {
+        return "";
         // TODO: Implement getHeaderLine() method.
     }
 
-    public function withHeader($name, $value)
+    public function withHeader(string $name, array|string $value): static
     {
+        return $this;
         // TODO: Implement withHeader() method.
     }
 
-    public function withAddedHeader($name, $value)
+    public function withAddedHeader(string $name, array|string $value): static
     {
+        return $this;
         // TODO: Implement withAddedHeader() method.
     }
 
-    public function withoutHeader($name)
+    public function withoutHeader(string $name): static
     {
+        return $this;
         // TODO: Implement withoutHeader() method.
     }
 
-    public function getBody()
+    public function getBody(): array
     {
+        return [];
         // TODO: Implement getBody() method.
     }
 
-    public function withBody(StreamInterface $body)
+    public function withBody(StreamInterface $body): static
     {
+        return $this;
         // TODO: Implement withBody() method.
     }
 
@@ -134,7 +141,7 @@ class Response implements ResponseInterface
         return $this->status;
     }
 
-    public function withStatus($code, $reasonPhrase = '')
+    public function withStatus(int $code, string $reasonPhrase = '')
     {
         $newResponse = clone $this;
         $newResponse->status = $code;

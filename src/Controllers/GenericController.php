@@ -16,15 +16,19 @@ abstract class GenericController implements ControllerInterface
     protected string $templateDIR = "./src/Views";
     protected TemplateLoader $templateLoader;
 
-    public function __construct($function, $model, $templateLoader, $request)
-    {
+    public function __construct(
+        string $function,
+        ModelInterface $model,
+        TemplateLoader $templateLoader,
+        EventInterface $request
+    ) {
         $this->function = $function;
         $this->model = $model;
         $this->templateLoader = $templateLoader;
         $this->request = $request;
     }
 
-    public function getFunction()
+    public function getFunction(): string
     {
         return $this->function;
     }

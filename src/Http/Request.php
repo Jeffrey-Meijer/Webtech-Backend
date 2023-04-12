@@ -44,12 +44,13 @@ class Request implements RequestInterface
         return $this->server["SERVER_PROTOCOL"] || null;
     }
 
-    public function withProtocolVersion($version)
+    public function withProtocolVersion(string $version): static
     {
+        return $this;
         // TODO: Implement withProtocolVersion() method.
     }
 
-    public function getSessions()
+    public function getSessions(): array
     {
         return $this->session;
     }
@@ -71,49 +72,54 @@ class Request implements RequestInterface
         }
     }
 
-    public function getHeaders()
+    public function getHeaders(): array
     {
+        return [];
         // TODO: Implement getHeaders() method.
     }
 
-    public function hasHeader($name)
+    public function hasHeader(string $name): bool
     {
+        return true;
         // TODO: Implement hasHeader() method.
     }
 
-    public function getHeader($name)
+    public function getHeader(string $name): array
     {
+        return [];
         // TODO: Implement getHeader() method.
     }
 
-    public function getHeaderLine($name)
+    public function getHeaderLine(string $name): string
     {
+        return "";
         // TODO: Implement getHeaderLine() method.
     }
 
-    public function withHeader($name, $value)
+    public function withHeader(string $name, array|string $value): static
     {
+        return $this;
         // TODO: Implement withHeader() method.
     }
 
-    public function withAddedHeader($name, $value)
+    public function withAddedHeader(string $name, array|string $value): static
     {
+        return $this;
         // TODO: Implement withAddedHeader() method.
     }
 
-    public function withoutHeader($name)
+    public function withoutHeader(string $name): static
     {
+        return $this;
         // TODO: Implement withoutHeader() method.
     }
 
-    public function getBody()
+    public function getBody(): array
     {
-        if ($this->getMethod() == "GET") {
-            return $this->get;
-        }
         if ($this->getMethod() == "POST") {
             return $this->post;
         }
+        return $this->get;
         // TODO: Implement getBody() method.
     }
 
@@ -122,8 +128,9 @@ class Request implements RequestInterface
         return $this->server["REQUEST_METHOD"] ?? "GET";
     }
 
-    public function withBody(StreamInterface $body)
+    public function withBody(StreamInterface $body): static
     {
+        return $this;
 //         TODO: Implement withBody() method.
     }
 
@@ -132,12 +139,12 @@ class Request implements RequestInterface
         // TODO: Implement getRequestTarget() method.
     }
 
-    public function withRequestTarget($requestTarget)
+    public function withRequestTarget(mixed $requestTarget)
     {
         // TODO: Implement withRequestTarget() method.
     }
 
-    public function withMethod($method)
+    public function withMethod(string $method)
     {
         // TODO: Implement withMethod() method.
     }
@@ -147,7 +154,7 @@ class Request implements RequestInterface
         return $this->uri ?? null;
     }
 
-    public function withUri(UriInterface $uri, $preserveHost = false)
+    public function withUri(UriInterface $uri, bool $preserveHost = false)
     {
         $newRequest = clone $this;
         $newRequest->uri = $uri;

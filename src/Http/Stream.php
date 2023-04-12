@@ -7,7 +7,7 @@ use Webtech\Http\Message\StreamInterface;
 class Stream implements StreamInterface
 {
 
-    private $stream;
+    private string $stream;
 
     public function __toString()
     {
@@ -44,7 +44,7 @@ class Stream implements StreamInterface
         // TODO: Implement isSeekable() method.
     }
 
-    public function seek($offset, $whence = SEEK_SET)
+    public function seek(int $offset, int $whence = SEEK_SET)
     {
         // TODO: Implement seek() method.
     }
@@ -59,7 +59,7 @@ class Stream implements StreamInterface
         // TODO: Implement isWritable() method.
     }
 
-    public function write($string)
+    public function write(string $string)
     {
         $this->stream = $string;
         // TODO: Implement write() method.
@@ -70,7 +70,7 @@ class Stream implements StreamInterface
         // TODO: Implement isReadable() method.
     }
 
-    public function read($length)
+    public function read(int $length): string
     {
         return $this->stream;
         // TODO: Implement read() method.
@@ -81,7 +81,7 @@ class Stream implements StreamInterface
         // TODO: Implement getContents() method.
     }
 
-    public function getMetadata($key = null)
+    public function getMetadata(string $key = null)
     {
         // TODO: Implement getMetadata() method.
     }

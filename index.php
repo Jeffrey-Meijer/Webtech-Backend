@@ -23,6 +23,9 @@ use Webtech\Models\RegisterModel;
 use Webtech\Models\TeacherModel;
 use Webtech\Models\UsersModel;
 
+/**
+ * @throws Exception
+ */
 function onRequest($event): void
 {
     $found = false;
@@ -225,8 +228,7 @@ function onRequest($event): void
         }
     }
     if (!$found) {
-        echo "404!";
-        // 404 page, probably a middleware
+        $templateLoader->load("404");
     }
 }
 

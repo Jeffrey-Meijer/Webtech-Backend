@@ -73,44 +73,44 @@ class Uri implements UriInterface
         // TODO: Implement getUserInfo() method.
     }
 
-    public function withScheme($scheme)
+    public function withScheme(string $scheme)
     {
         // TODO: Implement withScheme() method.
     }
 
-    public function withUserInfo($user, $password = null)
+    public function withUserInfo(string $user, string $password = null)
     {
         // TODO: Implement withUserInfo() method.
     }
 
-    public function withHost($host)
+    public function withHost(string $host)
     {
         // TODO: Implement withHost() method.
     }
 
-    public function withPort($port)
+    public function withPort(?int $port)
     {
         // TODO: Implement withPort() method.
     }
 
-    public function withPath($path)
+    public function withPath(string $path)
     {
         $newUri = clone $this;
         $newUri->path = $path;
         return $newUri;
     }
 
-    public function withQuery($query)
+    public function withQuery(string $query)
     {
         // TODO: Implement withQuery() method.
     }
 
-    public function withFragment($fragment)
+    public function withFragment(string $fragment)
     {
         // TODO: Implement withFragment() method.
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->scheme . "://" . $this->host . ":" . $this->port . $this->path;
     }

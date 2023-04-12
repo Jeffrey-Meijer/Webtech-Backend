@@ -4,6 +4,7 @@ namespace Webtech\Models;
 
 use Webtech\Connectors\Database;
 use Webtech\Connectors\Models\Exams;
+use Webtech\Connectors\Models\Generic;
 use Webtech\Connectors\Models\User;
 use Webtech\Connectors\ORM;
 
@@ -16,14 +17,14 @@ class AdminModel extends GenericModel
         $this->orm = new ORM($this->connector->getConnection(), new User());
     }
 
-    public function getExams()
+    public function getExams(): array
     {
         $this->orm->setModel(new Exams());
         $exams = $this->orm->all("exams");
         return $exams;
     }
 
-    public function getExam($id)
+    public function getExam($id): ?Generic
     {
         $this->orm->setModel(new Exams());
         $exam = $this->orm->select("exams", "id", $id);
@@ -40,7 +41,7 @@ class AdminModel extends GenericModel
         $this->orm->insert("exams", $data);
     }
 
-    public function updateExam($id, $name, $teacher_id)
+    public function updateExam($id, $name, $teacher_id): bool
     {
         $this->orm->setModel(new Exams());
         $data = array(
@@ -59,7 +60,7 @@ class AdminModel extends GenericModel
         return false;
     }
 
-    public function deleteExam($id)
+    public function deleteExam($id): int
     {
         $this->orm->setModel(new Exams());
         $where = array(
@@ -68,7 +69,7 @@ class AdminModel extends GenericModel
         return $this->orm->delete("exams", $where);
     }
 
-    public function getTeachers()
+    public function getTeachers(): array
     {
         $this->orm->setModel(new User());
 
@@ -76,21 +77,21 @@ class AdminModel extends GenericModel
         return $teachers;
     }
 
-    public function getUsers()
+    public function getUsers(): array
     {
         $this->orm->setModel(new User());
         $users = $this->orm->all("users");
         return $users;
     }
 
-    public function getUser($uuid)
+    public function getUser($uuid): ?Generic
     {
         $this->orm->setModel(new User());
         $user = $this->orm->select("users", "uuid", $uuid);
         return $user;
     }
 
-    public function updateUser($uuid, $newuuid, $first_name, $last_name, $email, $occupation, $password = null)
+    public function updateUser($uuid, $newuuid, $first_name, $last_name, $email, $occupation, $password = null): bool
     {
         $this->orm->setModel(new User());
         $data = array(
@@ -113,7 +114,7 @@ class AdminModel extends GenericModel
         return false;
     }
 
-    public function createUser($uuid, $first_name, $last_name, $email, $hashed_password, $occupation)
+    public function createUser($uuid, $first_name, $last_name, $email, $hashed_password, $occupation): bool|string
     {
         $this->orm->setModel(new User());
         $data = array(
@@ -127,7 +128,7 @@ class AdminModel extends GenericModel
         return $this->orm->insert("users", $data);
     }
 
-    public function deleteUser($uuid)
+    public function deleteUser($uuid): int
     {
         $this->orm->setModel(new User());
         $where = array(

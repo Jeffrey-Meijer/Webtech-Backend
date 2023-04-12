@@ -192,7 +192,7 @@ interface UriInterface
      * @throws InvalidArgumentException for invalid schemes.
      * @throws InvalidArgumentException for unsupported schemes.
      */
-    public function withScheme($scheme);
+    public function withScheme(string $scheme);
 
     /**
      * Return an instance with the specified user information.
@@ -205,10 +205,10 @@ interface UriInterface
      * information.
      *
      * @param string $user The user name to use for authority.
-     * @param null|string $password The password associated with $user.
+     * @param string|null $password The password associated with $user.
      * @return static A new instance with the specified user information.
      */
-    public function withUserInfo($user, $password = null);
+    public function withUserInfo(string $user, string $password = null);
 
     /**
      * Return an instance with the specified host.
@@ -222,7 +222,7 @@ interface UriInterface
      * @return static A new instance with the specified host.
      * @throws InvalidArgumentException for invalid hostnames.
      */
-    public function withHost($host);
+    public function withHost(string $host);
 
     /**
      * Return an instance with the specified port.
@@ -236,12 +236,12 @@ interface UriInterface
      * A null value provided for the port is equivalent to removing the port
      * information.
      *
-     * @param null|int $port The port to use with the new instance; a null value
+     * @param int|null $port The port to use with the new instance; a null value
      *     removes the port information.
      * @return static A new instance with the specified port.
      * @throws InvalidArgumentException for invalid ports.
      */
-    public function withPort($port);
+    public function withPort(?int $port);
 
     /**
      * Return an instance with the specified path.
@@ -265,7 +265,7 @@ interface UriInterface
      * @return static A new instance with the specified path.
      * @throws InvalidArgumentException for invalid paths.
      */
-    public function withPath($path);
+    public function withPath(string $path);
 
     /**
      * Return an instance with the specified query string.
@@ -282,7 +282,7 @@ interface UriInterface
      * @return static A new instance with the specified query string.
      * @throws InvalidArgumentException for invalid query strings.
      */
-    public function withQuery($query);
+    public function withQuery(string $query);
 
     /**
      * Return an instance with the specified URI fragment.
@@ -298,7 +298,7 @@ interface UriInterface
      * @param string $fragment The fragment to use with the new instance.
      * @return static A new instance with the specified fragment.
      */
-    public function withFragment($fragment);
+    public function withFragment(string $fragment);
 
     /**
      * Return the string representation as a URI reference.

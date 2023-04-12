@@ -2,7 +2,6 @@
 
 namespace Webtech\Http\Message;
 
-use Http\Message\StreamInterface;
 use InvalidArgumentException;
 use RuntimeException;
 

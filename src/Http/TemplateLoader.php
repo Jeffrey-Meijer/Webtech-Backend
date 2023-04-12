@@ -23,8 +23,11 @@ class TemplateLoader
      * @return void
      * @throws Exception
      */
-    public function load($templateName, $data = array(), $templates = array("header" => "header", "footer" => "footer"))
-    {
+    public function load(
+        $templateName,
+        array $data = array(),
+        array $templates = array("header" => "header", "footer" => "footer")
+    ): void {
         $templatePath = $this->templateDir . '/' . $templateName . '.php';
         if (!file_exists($templatePath)) {
             throw new Exception('Template not found!');

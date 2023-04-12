@@ -14,7 +14,7 @@ class RouteFactory implements RouteFactoryInterface
         return $this->routes;
     }
 
-    public function getRoutes()
+    public function getRoutes(): array
     {
         return $this->routes;
     }

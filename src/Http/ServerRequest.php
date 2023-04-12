@@ -28,58 +28,69 @@ class ServerRequest implements ServerRequestInterface
         return new ServerRequest($_GET, $_POST, $_FILES, $_SERVER);
     }
 
-    public function getProtocolVersion()
+    public function getProtocolVersion(): string
     {
+        return "";
         // TODO: Implement getProtocolVersion() method.
     }
 
-    public function withProtocolVersion($version)
+    public function withProtocolVersion(string $version): static
     {
+        return $this;
         // TODO: Implement withProtocolVersion() method.
     }
 
-    public function getHeaders()
+    public function getHeaders(): array
     {
+        return [];
         // TODO: Implement getHeaders() method.
     }
 
-    public function hasHeader($name)
+    public function hasHeader(string $name): bool
     {
+        return true;
         // TODO: Implement hasHeader() method.
     }
 
-    public function getHeader($name)
+    public function getHeader(string $name): array
     {
+        return [];
         // TODO: Implement getHeader() method.
     }
 
-    public function getHeaderLine($name)
+    public function getHeaderLine(string $name): string
     {
+        return "";
         // TODO: Implement getHeaderLine() method.
     }
 
-    public function withHeader($name, $value)
+    public function withHeader(string $name, array|string $value): static
     {
+        return $this;
         // TODO: Implement withHeader() method.
     }
 
-    public function withAddedHeader($name, $value)
+    public function withAddedHeader(string $name, array|string $value): static
     {
+        return $this;
         // TODO: Implement withAddedHeader() method.
     }
 
-    public function withoutHeader($name)
+    public function withoutHeader(string $name): static
     {
+        return $this;
         // TODO: Implement withoutHeader() method.
     }
 
-    public function getBody()
+    public function getBody(): array
     {
+        return [];
         // TODO: Implement getBody() method.
     }
 
-    public function withBody(StreamInterface $body)
+    public function withBody(StreamInterface $body): static
     {
+        return $this;
         // TODO: Implement withBody() method.
     }
 
@@ -88,7 +99,7 @@ class ServerRequest implements ServerRequestInterface
         // TODO: Implement getRequestTarget() method.
     }
 
-    public function withRequestTarget($requestTarget)
+    public function withRequestTarget(mixed $requestTarget)
     {
         // TODO: Implement withRequestTarget() method.
     }
@@ -98,7 +109,7 @@ class ServerRequest implements ServerRequestInterface
         // TODO: Implement getMethod() method.
     }
 
-    public function withMethod($method)
+    public function withMethod(string $method)
     {
         // TODO: Implement withMethod() method.
     }
@@ -108,7 +119,7 @@ class ServerRequest implements ServerRequestInterface
         // TODO: Implement getUri() method.
     }
 
-    public function withUri(UriInterface $uri, $preserveHost = false)
+    public function withUri(UriInterface $uri, bool $preserveHost = false)
     {
         // TODO: Implement withUri() method.
     }
@@ -153,7 +164,7 @@ class ServerRequest implements ServerRequestInterface
         // TODO: Implement getParsedBody() method.
     }
 
-    public function withParsedBody($data)
+    public function withParsedBody(object|array|null $data)
     {
         // TODO: Implement withParsedBody() method.
     }
@@ -163,17 +174,17 @@ class ServerRequest implements ServerRequestInterface
         // TODO: Implement getAttributes() method.
     }
 
-    public function getAttribute($name, $default = null)
+    public function getAttribute(string $name, mixed $default = null)
     {
         // TODO: Implement getAttribute() method.
     }
 
-    public function withAttribute($name, $value)
+    public function withAttribute(string $name, mixed $value)
     {
         // TODO: Implement withAttribute() method.
     }
 
-    public function withoutAttribute($name)
+    public function withoutAttribute(string $name)
     {
         // TODO: Implement withoutAttribute() method.
     }

@@ -3,7 +3,6 @@
 namespace Webtech\Controllers;
 
 use Exception;
-use Webtech\Helpers\ExtractQuery;
 
 class AuthController extends GenericController
 {
@@ -11,29 +10,29 @@ class AuthController extends GenericController
     /**
      * @throws Exception
      */
-    public function view()
+    public function view(): void
     {
         $templates = ["header" => "header", "footer" => "footer"];
 
-        echo $this->templateLoader->load("login", [], $templates);
+        $this->templateLoader->load("login", [], $templates);
     }
 
     /**
      * @throws Exception
      */
-    public function logout()
+    public function logout(): void
     {
         unset($_SESSION["uuid"]);
         unset($_SESSION["logged_in"]);
         unset($_SESSION["role"]);
 
-        echo $this->templateLoader->load("login");
+        $this->templateLoader->load("login");
     }
 
     /**
      * @throws Exception
      */
-    public function handleLogin()
+    public function handleLogin(): void
     {
         $requestBody = $this->request->getRequest()->getBody();
         $email = $requestBody["email"];
@@ -41,21 +40,21 @@ class AuthController extends GenericController
 
         $user = $this->getModel()->getUserByEmail($email);
         $templates = ["header" => "header", "footer" => "footer"];
-        if (password_verify($pass, $user->password)) {
+        if ($user && password_verify($pass, $user->password)) {
             // log it to $session
             $_SESSION["uuid"] = $user->uuid;
             $_SESSION["logged_in"] = true;
             $_SESSION["role"] = $user->occupation;
-            echo $this->templateLoader->load("home", [], $templates);
+            $this->templateLoader->load("home", [], $templates);
         } else {
-            echo $this->templateLoader->load("login", [], $templates);
+            $this->templateLoader->load("login", [], $templates);
         }
     }
 
     /**
      * @throws Exception
      */
-    public function handleRegister()
+    public function handleRegister(): void
     {
         $requestBody = $this->request->getRequest()->getBody();
         $uuid = $requestBody["uuid"];
@@ -76,13 +75,13 @@ class AuthController extends GenericController
             $_SESSION["role"] = $occupation;
         }
         $templates = ["header" => "header", "footer" => "footer"];
-        echo $this->templateLoader->load("home", [], $templates);
+        $this->templateLoader->load("home", [], $templates);
     }
 
     /**
      * @throws Exception
      */
-    public function registerView()
+    public function registerView(): void
     {
         $query = $this->request->getRequest()->getUri()->getQuery();
         if ($query != "") {
@@ -102,6 +101,6 @@ class AuthController extends GenericController
         }
         $templates = ["header" => "header", "footer" => "footer"];
 
-        echo $this->templateLoader->load("register", [], $templates);
+        $this->templateLoader->load("register", [], $templates);
     }
 }

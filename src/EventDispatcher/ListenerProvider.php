@@ -6,7 +6,7 @@ use Webtech\EventDispatcher\Interfaces\ListenerProviderInterface;
 
 class ListenerProvider implements ListenerProviderInterface
 {
-    private $listeners = [];
+    private array $listeners = [];
 
     public function addListener(string $eventName, callable $listener)
     {

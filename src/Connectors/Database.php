@@ -3,6 +3,7 @@
 namespace Webtech\Connectors;
 
 use PDO;
+use PDOException;
 
 class Database implements ConnectorInterface
 {

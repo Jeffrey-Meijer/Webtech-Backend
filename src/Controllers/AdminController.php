@@ -9,49 +9,60 @@ class AdminController extends GenericController
     /**
      * @throws Exception
      */
-    public function view()
+    public function view(): void
     {
         $uuid = $this->request->getRequest()->getSession("uuid");
-        echo $this->templateLoader->load("admins/home", []);
+        $this->templateLoader->load("admins/home", []);
     }
 
     /**
      * @throws Exception
      */
-    public function viewExamCreate()
+    public function viewExamCreate(): void
     {
         $teachers = $this->getModel()->getTeachers();
         $data = ["teachers" => $teachers];
-        echo $this->templateLoader->load("admins/exams/create", $data);
+        $this->templateLoader->load("admins/exams/create", $data);
     }
 
     /**
      * @throws Exception
      */
-    public function viewExamEdit()
+    public function viewExamEdit(): void
     {
         $body = $this->request->getRequest()->getBody();
-        $id = $body["id"];
-        $exam = $this->getModel()->getExam($id);
-        $teachers = $this->getModel()->getTeachers();
-        $data = ["exam" => $exam, "teachers" => $teachers];
+        if (isset($body["id"])) {
+            $id = $body["id"];
+            $exam = $this->getModel()->getExam($id);
+            $teachers = $this->getModel()->getTeachers();
+            $data = ["exam" => $exam, "teachers" => $teachers];
 
-        echo $this->templateLoader->load("admins/exams/edit", $data);
+            $this->templateLoader->load("admins/exams/edit", $data);
+        } else {
+            $this->viewExams();
+        }
     }
 
     /**
      * @throws Exception
      */
-    public function viewUserEdit()
+    public function viewUserEdit(): void
     {
         $body = $this->request->getRequest()->getBody();
-        $uuid = $body["uuid"];
-        $user = $this->getModel()->getUser($uuid);
-        $data = ["user" => $user];
-        echo $this->templateLoader->load("admins/users/edit", $data);
+        if (isset($body["uuid"])) {
+            $uuid = $body["uuid"];
+            $user = $this->getModel()->getUser($uuid);
+            $data = ["user" => $user];
+            $this->templateLoader->load("admins/users/edit", $data);
+        } else {
+            $this->viewUsers();
+        }
     }
 
-    public function examInsert()
+    /**
+     * @throws Exception
+     */
+    public function examInsert(): void
     {
         $body = $this->request->getRequest()->getBody();
         $name = $body["name"];
@@ -64,17 +75,19 @@ class AdminController extends GenericController
     /**
      * @throws Exception
      */
-    public function viewExams()
+    public function viewExams(): void
     {
         $exams = $this->getModel()->getExams();
         $data = ["exams" => $exams];
         echo $this->templateLoader->load("admins/exams", $data);
     }
 
-    public function examUpdate()
+    /**
+     * @throws Exception
+     */
+    public function examUpdate(): void
     {
         $body = $this->request->getRequest()->getBody();
-//        var_dump($body);
         $id = $body["id"];
         $name = $body["name"];
         $teacher_id = $body["teacher_id"];
@@ -83,7 +96,10 @@ class AdminController extends GenericController
         $this->viewExams();
     }
 
-    public function examDelete()
+    /**
+     * @throws Exception
+     */
+    public function examDelete(): void
     {
         $body = $this->request->getRequest()->getBody();
         $id = $body["id"];
@@ -92,7 +108,10 @@ class AdminController extends GenericController
         $this->viewExams();
     }
 
-    public function userUpdate()
+    /**
+     * @throws Exception
+     */
+    public function userUpdate(): void
     {
         $body = $this->request->getRequest()->getBody();
         $updatedUser = $this->getModel()->updateUser(
@@ -117,7 +136,10 @@ class AdminController extends GenericController
         echo $this->templateLoader->load("admins/users", $data);
     }
 
-    public function userInsert()
+    /**
+     * @throws Exception
+     */
+    public function userInsert(): void
     {
         $requestBody = $this->request->getRequest()->getBody();
         $uuid = $requestBody["uuid"];
@@ -132,25 +154,29 @@ class AdminController extends GenericController
 
         $id = $this->getModel()->createUser($uuid, $first_name, $last_name, $email, $hashed_pass, $occupation);
         if ($id) {
-            return $this->viewUsers();
+            $this->viewUsers();
+        } else {
+            $this->viewUserCreate();
         }
-        return $this->viewUserCreate();
     }
 
     /**
      * @throws Exception
      */
-    public function viewUserCreate()
+    public function viewUserCreate(): void
     {
-        echo $this->templateLoader->load("admins/users/create", []);
+        $this->templateLoader->load("admins/users/create", []);
     }
 
-    public function userDelete()
+    /**
+     * @throws Exception
+     */
+    public function userDelete(): void
     {
         $requestBody = $this->request->getRequest()->getBody();
         $uuid = $requestBody["uuid"];
 
         $rows = $this->getModel()->deleteUser($uuid);
-        return $this->viewUsers();
+        $this->viewUsers();
     }
 }

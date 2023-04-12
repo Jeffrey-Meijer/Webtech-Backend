@@ -22,9 +22,9 @@
         <input id="password" name="password" type="password">
         <label for="occupation">Occupation:</label>
         <select id="occupation" name="occupation" value="<?= $data["user"]->occupation ?>">
-            <option>Student</option>
-            <option>Teacher</option>
-            <option>Administrator</option>
+            <option value="Student">Student</option>
+            <option value="Teacher">Teacher</option>
+            <option value="Administrator">Administrator</option>
         </select>
         <input id="submit" type="submit">
     </form>

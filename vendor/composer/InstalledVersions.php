@@ -74,7 +74,7 @@ class InstalledVersions
      * @return string[]
      * @psalm-return list<string>
      */
-    public static function getInstalledPackagesByType($type)
+    public static function getInstalledPackagesByType(string $type)
     {
         $packagesByType = array();
 
@@ -98,7 +98,7 @@ class InstalledVersions
      * @param bool $includeDevRequirements
      * @return bool
      */
-    public static function isInstalled($packageName, $includeDevRequirements = true)
+    public static function isInstalled(string $packageName, bool $includeDevRequirements = true)
     {
         foreach (self::getInstalled() as $installed) {
             if (isset($installed['versions'][$packageName])) {
@@ -121,7 +121,7 @@ class InstalledVersions
      * @param string|null $constraint A version constraint to check for, if you pass one you have to make sure composer/semver is required by your package
      * @return bool
      */
-    public static function satisfies(VersionParser $parser, $packageName, $constraint)
+    public static function satisfies(VersionParser $parser, string $packageName, ?string $constraint)
     {
         $constraint = $parser->parseConstraints($constraint);
         $provided = $parser->parseConstraints(self::getVersionRanges($packageName));
@@ -138,7 +138,7 @@ class InstalledVersions
      * @param string $packageName
      * @return string Version constraint usable with composer/semver
      */
-    public static function getVersionRanges($packageName)
+    public static function getVersionRanges(string $packageName)
     {
         foreach (self::getInstalled() as $installed) {
             if (!isset($installed['versions'][$packageName])) {
@@ -169,7 +169,7 @@ class InstalledVersions
      * @param string $packageName
      * @return string|null If the package is being replaced or provided but is not really installed, null will be returned as version, use satisfies or getVersionRanges if you need to know if a given version is present
      */
-    public static function getVersion($packageName)
+    public static function getVersion(string $packageName)
     {
         foreach (self::getInstalled() as $installed) {
             if (!isset($installed['versions'][$packageName])) {
@@ -190,7 +190,7 @@ class InstalledVersions
      * @param string $packageName
      * @return string|null If the package is being replaced or provided but is not really installed, null will be returned as version, use satisfies or getVersionRanges if you need to know if a given version is present
      */
-    public static function getPrettyVersion($packageName)
+    public static function getPrettyVersion(string $packageName)
     {
         foreach (self::getInstalled() as $installed) {
             if (!isset($installed['versions'][$packageName])) {
@@ -211,7 +211,7 @@ class InstalledVersions
      * @param string $packageName
      * @return string|null If the package is being replaced or provided but is not really installed, null will be returned as reference
      */
-    public static function getReference($packageName)
+    public static function getReference(string $packageName)
     {
         foreach (self::getInstalled() as $installed) {
             if (!isset($installed['versions'][$packageName])) {
@@ -232,7 +232,7 @@ class InstalledVersions
      * @param string $packageName
      * @return string|null If the package is being replaced or provided but is not really installed, null will be returned as install path. Packages of type metapackages also have a null install path.
      */
-    public static function getInstallPath($packageName)
+    public static function getInstallPath(string $packageName)
     {
         foreach (self::getInstalled() as $installed) {
             if (!isset($installed['versions'][$packageName])) {
@@ -312,7 +312,7 @@ class InstalledVersions
      *
      * @psalm-param array{root: array{name: string, pretty_version: string, version: string, reference: string|null, type: string, install_path: string, aliases: string[], dev: bool}, versions: array<string, array{pretty_version?: string, version?: string, reference?: string|null, type?: string, install_path?: string, aliases?: string[], dev_requirement: bool, replaced?: string[], provided?: string[]}>} $data
      */
-    public static function reload($data)
+    public static function reload(array $data)
     {
         self::$installed = $data;
         self::$installedByVendor = array();

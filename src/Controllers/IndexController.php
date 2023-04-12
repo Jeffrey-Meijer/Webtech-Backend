@@ -9,9 +9,9 @@ class IndexController extends GenericController
     /**
      * @throws Exception
      */
-    public function view()
+    public function view(): void
     {
         $templates = ["header" => "header", "footer" => "footer"];
-        echo $this->templateLoader->load("home", [], $templates);
+        $this->templateLoader->load("home", [], $templates);
     }
 }
