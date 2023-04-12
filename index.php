@@ -9,9 +9,6 @@ use Webtech\Controllers\GradesController;
 use Webtech\Controllers\IndexController;
 use Webtech\Controllers\TeacherController;
 use Webtech\Controllers\UsersController;
-use Webtech\Http\Request;
-use Webtech\Http\RequestHandler;
-use Webtech\Http\RouteFactory;
 use Webtech\Http\TemplateLoader;
 use Webtech\Middleware\AuthMiddleware;
 use Webtech\Models\AdminModel;
@@ -22,6 +19,9 @@ use Webtech\Models\LoginModel;
 use Webtech\Models\RegisterModel;
 use Webtech\Models\TeacherModel;
 use Webtech\Models\UsersModel;
+use Webtech\Request\Request;
+use Webtech\Request\RequestHandler;
+use Webtech\Route\RouteFactory;
 
 /**
  * @throws Exception
@@ -32,7 +32,7 @@ function onRequest($event): void
     $path = $event->getRequest()->getUri()->getPath();
     $method = $event->getRequest()->getMethod();
     $routeFactory = new RouteFactory();
-    $templateLoader = new TemplateLoader("./src/Views");
+    $templateLoader = new TemplateLoader("./app/Views", "./app/Public/css");
     $routeFactory->createRoute(
         "home",
         "GET",

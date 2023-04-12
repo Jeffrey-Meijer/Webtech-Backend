@@ -18,7 +18,7 @@ class ComposerStaticInit1a56ab2fc48ca9fa2b0aee57c476e8be
     public static $prefixDirsPsr4 = array(
         'Webtech\\' =>
             array(
-                0 => __DIR__ . '/../..' . '/src',
+                0 => __DIR__ . '/../..' . '/app',
             ),
     );
 
