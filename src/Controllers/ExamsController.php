@@ -2,35 +2,35 @@
 
 namespace Webtech\Controllers;
 
-use Webtech\Helpers\ExtractQuery;
-use Webtech\Http\Response;
-use Webtech\Http\ResponseFactory;
-use Webtech\Http\Stream;
-
 class ExamsController extends GenericController
 {
     public function view()
     {
         $uuid = $this->request->getRequest()->getSession("uuid");
         $exams = isset($uuid) ? $this->model->getExams($uuid) : [];
-        $data = ["availableExams" => $exams, "header" => "header", "footer" => "footer"];
-        echo $this->templateLoader->load("exams", $data);
+//        var_dump($exams);
+        $templates = ["header" => "header", "footer" => "footer"];
+        $data = ["availableExams" => $exams];
+        echo $this->templateLoader->load("exams", $data, $templates);
     }
-    public function available() {
+
+    public function available()
+    {
         $uuid = $this->request->getRequest()->getSession("uuid");
-//        $query = $this->request->getRequest()->getUri()->getQuery();
-//        var_dump($query);
-//        if ($query != "") {
-//            $extractedParameters = ExtractQuery::extractQuery($query);
-
-//        }
-        $data = ["availableExams" => $this->model->getAvailableExams($uuid), "header" => "header", "footer" => "footer"];
-        echo $this->templateLoader->load("exams", $data);
+        $availableExams = $this->getModel()->getAvailableExams($uuid);
+        $templates = ["header" => "header", "footer" => "footer"];
+        $data = ["availableExams" => $availableExams];
+        echo $this->templateLoader->load("exams", $data, $templates);
     }
 
-    public function handle() {
-//        echo "test";
-        error_log("getting to handle");
-        return new Response("test", 200, ["content-type" => "application/json"]);
+    public function handle()
+    {
+        $body = $this->request->getRequest()->getBody();
+        $uuid = $this->request->getRequest()->getSession("uuid");
+        $id = $body["id"];
+        $inserted = $this->getModel()->applyForExam($uuid, $id);
+        if ($inserted) {
+            return $this->view();
+        }
     }
 }

@@ -9,9 +9,11 @@ class User_exams
     public int $id;
     public int $user_id;
     public int $exam_id;
-    public float $grade;
+    public ?float $grade;
     public \stdClass $getUser;
     public \stdClass $getExam;
+    public int $teacher_id;
+    public string $name;
     public function getUser($db)
     {
         $query = "SELECT * FROM users WHERE uuid = $this->user_id";

@@ -20,7 +20,7 @@ class TemplateLoader
      * @return void
      * @throws \Exception
      */
-    public function load($templateName, $data = array())
+    public function load($templateName, $data = array(), $templates = array("header" => "header", "footer" => "footer"))
     {
         $templatePath = $this->templateDir . '/' . $templateName . '.php';
         if (!file_exists($templatePath)) {
@@ -30,7 +30,7 @@ class TemplateLoader
         ob_start();
         include $templatePath;
         $output = ob_get_contents();
-        foreach ($data as $key => $value) {
+        foreach ($templates as $key => $value) {
             ob_start();
             include $this->templateDir . "/Templates/" . $value . ".php";
             $content = ob_get_contents();

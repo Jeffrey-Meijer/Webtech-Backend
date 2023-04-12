@@ -96,7 +96,8 @@ class Request implements RequestInterface
 
     public function getBody()
     {
-        return $this->get;
+        if ($this->getMethod() == "GET") return $this->get;
+        if ($this->getMethod() == "POST") return $this->post;
         // TODO: Implement getBody() method.
     }
 

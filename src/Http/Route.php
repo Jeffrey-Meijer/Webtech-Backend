@@ -50,7 +50,4 @@ class Route implements RouteInterface {
     {
         $this->controller = $controller;
     }
-//////    public function invokeController() : void {
-////        $this->getController()->invoke();
-//    }
 }

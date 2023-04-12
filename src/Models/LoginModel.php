@@ -13,13 +13,13 @@ class LoginModel extends GenericModel
     {
         $this->name = "LoginModel";
         $this->connector = new Database();
-        $this->orm = new ORM($this->connector->getConnection(), [new User()]);
+        $this->orm = new ORM($this->connector->getConnection(), new User());
     }
 
-    public function getUsers() {
-        $users = $this->orm->all("users");
-        return $users;
-    }
+//    public function getUsers() {
+//        $users = $this->orm->all("users");
+//        return $users;
+//    }
     public function getUserByEmail($email) {
         $users = $this->orm->select("users", "email", $email);
         return $users;

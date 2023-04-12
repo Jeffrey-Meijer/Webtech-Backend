@@ -15,6 +15,19 @@ class RegisterModel extends GenericModel
         $this->orm = new ORM($this->connector->getConnection(), [new User()]);
     }
 
+
+    public function createUser($uuid, $first_name, $last_name, $email, $hashed_password, $occupation) {
+        $data = array(
+            "uuid" => $uuid,
+            "first_name" => $first_name,
+            "last_name" => $last_name,
+            "email" => $email,
+            "password" => $hashed_password,
+            "occupation" => $occupation
+        );
+        return $this->orm->insert("users", $data);
+
+    }
 //    public function () {
 //        $exams = $this->orm->all('users');
 //        return $exams;

@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Registration Page</title>
+    <title>Admin tools</title>
 </head>
 <body>
 {{header}}
-<div class="registration-page">
-    <form action="/register" method="post">
+<div class="create-user">
+    <h1>Create new user</h1>
+    <form action="/admin/users/create" method="post">
         <label for="uuid">UUID:</label>
         <input id="uuid" name="uuid" type="number">
         <label for="first_name">First name:</label>

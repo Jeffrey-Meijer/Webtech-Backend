@@ -15,13 +15,14 @@
         </thead>
         <tbody>
     <?php foreach ($data["grades"] as $grade) : ?>
-<!--            --><?php //= sprintf("%s => exam: %d => grade: %s", $grade->user_id, $grade->exam_id, $grade->grade); ?>
-        <td>
-            <?= $grade->getExam->name ?>
-        </td>
-        <td>
-            <?= $grade->grade?>
-        </td>
+        <tr>
+            <td>
+                <?= $grade->getExam->name ?>
+            </td>
+            <td>
+                <?= $grade->grade ?? "None"?>
+            </td>
+        </tr>
     <?php endforeach; ?>
         </tbody>
     </table>

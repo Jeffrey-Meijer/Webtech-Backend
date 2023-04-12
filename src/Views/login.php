@@ -8,7 +8,7 @@
 {{header}}
 <div class="login-page">
     <?php if (!isset($_SESSION["logged_in"])): ?>
-    <form>
+    <form action="/login" method="post">
         <label for="email">Email:</label>
         <input id="email" name="email" type="email">
         <label for="password">Password:</label>

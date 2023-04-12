@@ -11,4 +11,8 @@ class User {
     public string $password;
     public string $email;
     public string $occupation;
+
+
+    public string $name;
+
 }

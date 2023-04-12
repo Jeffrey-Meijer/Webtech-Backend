@@ -7,26 +7,16 @@
 <body>
 {{header}}
 <div class="exams">
-<!--    --><?php //foreach ($data["availableExams"] as $availableExam) : ?>
-<!--        <li>--><?php //= sprintf("%d => %s %s", $availableExam->id, $availableExam->name, $availableExam->teacher_id) ?><!-- <button onclick="applyForExam()">Apply</button></li>-->
-<!--    --><?php //endforeach; ?>
     <?php foreach ($data["availableExams"] as $availableExam): ?>
-<!--        --><?php //= sprintf("%d => %s %s, %s", $availableExam->id, $availableExam->user_id, $availableExam->exam_id, $availableExam->grade) ?>
-    <?= sprintf("%d => %s %s", $availableExam->id, $availableExam->name, $availableExam->teacher_id); ?> <button onclick="handleExam()">Apply</button>
+        <li>
+            <?= sprintf("%d => %s", $availableExam->id, $availableExam->name); ?>
+            <form action="/exams" method="post">
+                <input type="hidden" name="id" value="<?= $availableExam->id ?>">
+                <input type="submit" value="Apply">
+            </form>
+        </li>
     <?php endforeach; ?>
 </div>
 {{footer}}
 </body>
-
-<script>
-    async function handleExam() {
-        const response = await fetch("/exams/available", {
-            method: "POST",
-            body: {exam_id: 1}
-        });
-        console.log(response);
-        console.log("applied for exam!");
-
-    }
-</script>
 </html>
