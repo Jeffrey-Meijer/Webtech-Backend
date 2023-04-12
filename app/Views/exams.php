@@ -7,7 +7,7 @@
 </head>
 <body>
 {{header}}
-<div class="exams">
+<div class="exams container">
     <?php
     foreach ($data["availableExams"] as $availableExam): ?>
         <li>

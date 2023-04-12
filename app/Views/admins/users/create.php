@@ -7,7 +7,7 @@
 </head>
 <body>
 {{header}}
-<div class="create-user">
+<div class="create-user container">
     <h1>Create new user</h1>
     <form action="/admin/users/create" method="post">
         <label for="uuid">UUID:</label>

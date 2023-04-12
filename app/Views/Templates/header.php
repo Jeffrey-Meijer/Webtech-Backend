@@ -1,4 +1,4 @@
-<div class="header" style="display: flex;justify-content: space-between; background-color: aqua">
+<div class="header">
     <div class="header-image">
         <img src="https://placehold.jp/150x150.png">
     </div>

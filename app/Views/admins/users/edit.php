@@ -7,7 +7,7 @@
 </head>
 <body>
 {{header}}
-<div class="edit-user">
+<div class="edit-user container">
     <h1>Editing <?= $data["user"]->first_name ?></h1>
     <form action="/admin/users/edit" method="post">
         <input id="olduuid" name="olduuid" type="hidden" value="<?= $data["user"]->uuid ?>">

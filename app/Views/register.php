@@ -7,7 +7,7 @@
 </head>
 <body>
 {{header}}
-<div class="registration-page">
+<div class="registration-page container">
     <form action="/register" method="post">
         <label for="uuid">UUID:</label>
         <input id="uuid" name="uuid" type="number">

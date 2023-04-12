@@ -8,7 +8,7 @@
 </head>
 <body>
 {{header}}
-<div class="Admin-tools" style="display: grid; grid-template-columns: 1fr 1fr">
+<div class="admin-tools container" style="display: grid; grid-template-columns: 1fr 1fr">
     <a href="/admin/users">
         <div class="">
             <img src="">

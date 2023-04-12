@@ -7,7 +7,7 @@
 </head>
 <body>
 {{header}}
-<div class="Admin-tools">
+<div class="admin-tools container">
     <h1>Exams tool</h1>
     <div style="display: grid; grid-template-columns: 1fr 1fr">
         <?php

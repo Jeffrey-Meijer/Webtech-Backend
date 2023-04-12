@@ -7,7 +7,7 @@
 </head>
 <body>
 {{header}}
-<div class="login-page">
+<div class="login-page container">
     <?php
     if (!isset($_SESSION["logged_in"])): ?>
         <form action="/login" method="post">

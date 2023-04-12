@@ -7,7 +7,7 @@
 </head>
 <body>
 {{header}}
-<div class="grades-page">
+<div class="grades-page container">
     <h1>Test</h1>
     <table>
         <thead>

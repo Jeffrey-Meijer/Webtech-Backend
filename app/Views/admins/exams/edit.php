@@ -7,7 +7,7 @@
 </head>
 <body>
 {{header}}
-<div class="edit-exam">
+<div class="edit-exam container">
     <h1>Editing <?= $data["exam"]->name ?></h1>
     <form action="/admin/exams/edit" method="post">
         <input id="id" name="id" type="hidden" value="<?= $data["exam"]->id ?>">

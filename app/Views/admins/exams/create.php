@@ -7,7 +7,7 @@
 </head>
 <body>
 {{header}}
-<div class="create-exam">
+<div class="create-exam container">
     <h1>Create new exam</h1>
     <form action="/admin/exams/create" method="post">
         <label for="name">Name:</label>

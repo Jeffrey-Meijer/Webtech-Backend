@@ -6,7 +6,7 @@
     {{css}}
 </head>
 <body>
-<div class="users">
+<div class="users container">
     <?php
     foreach ($data["users"] as $user) : ?>
         <li><?= sprintf(
