@@ -1,11 +1,14 @@
 <?php
+
 namespace Webtech\Http;
 
 use Webtech\Http\Message\StreamInterface;
 
-class Stream implements StreamInterface {
+class Stream implements StreamInterface
+{
 
     private $stream;
+
     public function __toString()
     {
         // TODO: Implement __toString() method.

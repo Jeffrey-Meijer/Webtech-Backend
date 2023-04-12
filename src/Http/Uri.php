@@ -1,5 +1,7 @@
 <?php
+
 namespace Webtech\Http;
+
 use Webtech\Http\Message\UriInterface;
 
 class Uri implements UriInterface
@@ -11,8 +13,14 @@ class Uri implements UriInterface
     private string $query;
     private string $fragment;
 
-    public function __construct(string $scheme, string $host, ?int $port, string $path = '/', string $query = '', string $fragment = '')
-    {
+    public function __construct(
+        string $scheme,
+        string $host,
+        ?int $port,
+        string $path = '/',
+        string $query = '',
+        string $fragment = ''
+    ) {
         $this->scheme = $scheme;
         $this->host = $host;
         $this->port = $port;
@@ -59,6 +67,7 @@ class Uri implements UriInterface
     {
         return $this->fragment;
     }
+
     public function getUserInfo()
     {
         // TODO: Implement getUserInfo() method.

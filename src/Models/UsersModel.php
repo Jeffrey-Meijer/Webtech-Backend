@@ -12,14 +12,17 @@ class UsersModel extends GenericModel
     {
         $this->name = "UsersModel";
         $this->connector = new Database();
-        $this->orm = new ORM($this->connector->getConnection(), User::class);
+        $this->orm = new ORM($this->connector->getConnection(), new User());
     }
 
-    public function getAllUsers() {
+    public function getAllUsers()
+    {
         $users = $this->orm->all('users');
         return $users;
     }
-    public function getUser($uuid) {
+
+    public function getUser($uuid)
+    {
         $pdo = $this->connector->getConnection();
         $stmt = $pdo->prepare(sprintf("SELECT * FROM users where uuid = %s", $uuid));
         $stmt->execute();

@@ -2,8 +2,13 @@
 
 namespace Webtech\Controllers;
 
+use Exception;
+
 class GradesController extends GenericController
 {
+    /**
+     * @throws Exception
+     */
     public function view()
     {
         $uuid = $this->request->getRequest()->getSession("uuid");

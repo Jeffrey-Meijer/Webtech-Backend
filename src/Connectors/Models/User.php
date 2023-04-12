@@ -2,7 +2,8 @@
 
 namespace Webtech\Connectors\Models;
 
-class User {
+class User extends Generic
+{
     public string $table = 'users';
     public int $id;
     public int $uuid;

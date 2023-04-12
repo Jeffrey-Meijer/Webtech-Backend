@@ -6,7 +6,8 @@ use Webtech\Http\Message\ServerRequestInterface;
 use Webtech\Http\Message\StreamInterface;
 use Webtech\Http\Message\UriInterface;
 
-class ServerRequest implements ServerRequestInterface {
+class ServerRequest implements ServerRequestInterface
+{
 
     private UriInterface $uri;
     private array $get;
@@ -14,16 +15,19 @@ class ServerRequest implements ServerRequestInterface {
     private array $files;
     private array $server;
 
-    public function __construct($get, $post, $files, $server) {
+    public function __construct($get, $post, $files, $server)
+    {
         $this->get = $get;
         $this->post = $post;
         $this->files = $files;
         $this->server = $server;
     }
 
-    public static function fromGlobals() : self {
+    public static function fromGlobals(): self
+    {
         return new ServerRequest($_GET, $_POST, $_FILES, $_SERVER);
     }
+
     public function getProtocolVersion()
     {
         // TODO: Implement getProtocolVersion() method.

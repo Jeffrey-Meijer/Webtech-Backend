@@ -12,11 +12,12 @@ class RegisterModel extends GenericModel
     {
         $this->name = "RegisterModel";
         $this->connector = new Database();
-        $this->orm = new ORM($this->connector->getConnection(), [new User()]);
+        $this->orm = new ORM($this->connector->getConnection(), new User());
     }
 
 
-    public function createUser($uuid, $first_name, $last_name, $email, $hashed_password, $occupation) {
+    public function createUser($uuid, $first_name, $last_name, $email, $hashed_password, $occupation)
+    {
         $data = array(
             "uuid" => $uuid,
             "first_name" => $first_name,
@@ -26,10 +27,5 @@ class RegisterModel extends GenericModel
             "occupation" => $occupation
         );
         return $this->orm->insert("users", $data);
-
     }
-//    public function () {
-//        $exams = $this->orm->all('users');
-//        return $exams;
-//    }
 }

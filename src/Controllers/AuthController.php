@@ -2,11 +2,15 @@
 
 namespace Webtech\Controllers;
 
+use Exception;
 use Webtech\Helpers\ExtractQuery;
 
 class AuthController extends GenericController
 {
 
+    /**
+     * @throws Exception
+     */
     public function view()
     {
         $templates = ["header" => "header", "footer" => "footer"];
@@ -14,6 +18,9 @@ class AuthController extends GenericController
         echo $this->templateLoader->load("login", [], $templates);
     }
 
+    /**
+     * @throws Exception
+     */
     public function logout()
     {
         unset($_SESSION["uuid"]);
@@ -23,6 +30,9 @@ class AuthController extends GenericController
         echo $this->templateLoader->load("login");
     }
 
+    /**
+     * @throws Exception
+     */
     public function handleLogin()
     {
         $requestBody = $this->request->getRequest()->getBody();
@@ -42,6 +52,9 @@ class AuthController extends GenericController
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function handleRegister()
     {
         $requestBody = $this->request->getRequest()->getBody();
@@ -66,6 +79,9 @@ class AuthController extends GenericController
         echo $this->templateLoader->load("home", [], $templates);
     }
 
+    /**
+     * @throws Exception
+     */
     public function registerView()
     {
         $query = $this->request->getRequest()->getUri()->getQuery();

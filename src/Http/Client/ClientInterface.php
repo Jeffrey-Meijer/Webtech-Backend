@@ -1,4 +1,5 @@
 <?php
+
 namespace Webtech\Http\Client;
 
 use Webtech\Http\Message\RequestInterface;
@@ -13,7 +14,7 @@ interface ClientInterface
      *
      * @return ResponseInterface
      *
-     * @throws \Webtech\Http\Client\ClientExceptionInterface If an error happens while processing the request.
+     * @throws ClientExceptionInterface If an error happens while processing the request.
      */
     public function sendRequest(RequestInterface $request): ResponseInterface;
 }

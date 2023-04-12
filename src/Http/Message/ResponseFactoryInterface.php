@@ -1,7 +1,6 @@
 <?php
-namespace Webtech\Http\Message;
 
-use Webtech\Http\Message\ResponseInterface;
+namespace Webtech\Http\Message;
 
 interface ResponseFactoryInterface
 {

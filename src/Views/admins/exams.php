@@ -9,7 +9,8 @@
 <div class="Admin-tools">
     <h1>Exams tool</h1>
     <div style="display: grid; grid-template-columns: 1fr 1fr">
-        <?php foreach ($data["exams"] as $exam) : ?>
+        <?php
+        foreach ($data["exams"] as $exam) : ?>
             <li>
                 <?= $exam->id ?>
                 <?= $exam->name ?>
@@ -22,7 +23,8 @@
                     <input type="submit" value="Delete">
                 </form>
             </li>
-        <?php endforeach; ?>
+        <?php
+        endforeach; ?>
     </div>
     <h1>Create new exam</h1>
     <a href="/admin/exams/create">Create new exam</a>

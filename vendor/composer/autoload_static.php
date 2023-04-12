@@ -4,33 +4,34 @@
 
 namespace Composer\Autoload;
 
+use Closure;
+
 class ComposerStaticInit1a56ab2fc48ca9fa2b0aee57c476e8be
 {
-    public static $prefixLengthsPsr4 = array (
-        'W' => 
-        array (
-            'Webtech\\' => 8,
-        ),
+    public static $prefixLengthsPsr4 = array(
+        'W' =>
+            array(
+                'Webtech\\' => 8,
+            ),
     );
 
-    public static $prefixDirsPsr4 = array (
-        'Webtech\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
+    public static $prefixDirsPsr4 = array(
+        'Webtech\\' =>
+            array(
+                0 => __DIR__ . '/../..' . '/src',
+            ),
     );
 
-    public static $classMap = array (
+    public static $classMap = array(
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
-        return \Closure::bind(function () use ($loader) {
+        return Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit1a56ab2fc48ca9fa2b0aee57c476e8be::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit1a56ab2fc48ca9fa2b0aee57c476e8be::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit1a56ab2fc48ca9fa2b0aee57c476e8be::$classMap;
-
         }, null, ClassLoader::class);
     }
 }

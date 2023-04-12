@@ -7,7 +7,8 @@
 <body>
 {{header}}
 <div class="exams">
-    <?php foreach ($data["availableExams"] as $availableExam): ?>
+    <?php
+    foreach ($data["availableExams"] as $availableExam): ?>
         <li>
             <?= sprintf("%d => %s", $availableExam->id, $availableExam->name); ?>
             <form action="/exams" method="post">
@@ -15,7 +16,8 @@
                 <input type="submit" value="Apply">
             </form>
         </li>
-    <?php endforeach; ?>
+    <?php
+    endforeach; ?>
 </div>
 {{footer}}
 </body>

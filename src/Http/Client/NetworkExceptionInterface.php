@@ -1,4 +1,5 @@
 <?php
+
 namespace Webtech\Http\Client;
 
 use Webtech\Http\Message\RequestInterface;

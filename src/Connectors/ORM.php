@@ -3,19 +3,20 @@
 namespace Webtech\Connectors;
 
 use PDO;
+use Webtech\Connectors\Models\Generic;
 
 class ORM
 {
-    protected $dbh;
-    protected $model;
+    protected PDO $dbh;
+    protected Generic $model;
 
-    public function __construct(PDO $dbh, $model)
+    public function __construct(PDO $dbh, Generic $model)
     {
         $this->dbh = $dbh;
         $this->model = $model;
     }
 
-    public function insert($table, $data)
+    public function insert($table, $data): bool|string
     {
         $keys = array_keys($data);
         $values = array_values($data);
@@ -32,7 +33,7 @@ class ORM
         return $this->dbh->lastInsertId();
     }
 
-    public function update($table, $data, $where)
+    public function update($table, $data, $where): int
     {
         $set = [];
         $values = [];
@@ -60,7 +61,7 @@ class ORM
         return $stmt->rowCount();
     }
 
-    public function delete($table, $where)
+    public function delete($table, $where): int
     {
         $whereClause = "";
         $values = [];
@@ -109,6 +110,22 @@ class ORM
 //    {
 //
 //    }
+
+    protected function mapToObject($row)
+    {
+        $obj = clone $this->model;
+        foreach ($row as $key => $value) {
+            $obj->$key = $value;
+
+            // Call a method on the model if it exists for the given property
+            $method = "get" . ucfirst(str_replace("_id", "", $key));
+            if (method_exists($obj, $method)) {
+                $obj->$method = $obj->$method($this->dbh);
+            }
+        }
+        return $obj;
+    }
+
     public function selectNotExists($table, $where, $subquery)
     {
         $whereClause = "";
@@ -141,7 +158,6 @@ class ORM
         return $objects;
     }
 
-
     public function select($table, $where, $value)
     {
         $query = "SELECT * FROM $table WHERE $where = '$value'";
@@ -155,7 +171,9 @@ class ORM
     public function join($fromTable, $table, $joinCondition, $where = null, $whereCondition = null)
     {
         $query = "SELECT * FROM " . $fromTable . " LEFT OUTER JOIN $table ON $joinCondition";
-        if ($where != null && $whereCondition != null) $query .= " WHERE $where = $whereCondition";
+        if ($where != null && $whereCondition != null) {
+            $query .= " WHERE $where = $whereCondition";
+        }
 //        var_dump($query);
         $stmt = $this->dbh->prepare($query);
         $stmt->execute();
@@ -183,11 +201,6 @@ class ORM
     public function getModel()
     {
         return $this->model;
-    }
-
-    public function setModel($model)
-    {
-        $this->model = $model;
     }
 
 //    protected function mapToObject($row) {
@@ -221,19 +234,10 @@ class ORM
 //        }
 //        return $objs;
 //    }
-    protected function mapToObject($row)
-    {
-        $obj = clone $this->model;
-        foreach ($row as $key => $value) {
-            $obj->$key = $value;
 
-            // Call a method on the model if it exists for the given property
-            $method = "get" . ucfirst(str_replace("_id", "", $key));
-            if (method_exists($obj, $method)) {
-                $obj->$method = $obj->$method($this->dbh);
-            }
-        }
-        return $obj;
+    public function setModel($model)
+    {
+        $this->model = $model;
     }
 
 }

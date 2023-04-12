@@ -1,5 +1,8 @@
 <?php
+
 namespace Webtech\Http\Message;
+
+use InvalidArgumentException;
 
 interface MessageInterface
 {
@@ -114,7 +117,7 @@ interface MessageInterface
      * @param string $name Case-insensitive header field name.
      * @param string|string[] $value Header value(s).
      * @return static
-     * @throws \InvalidArgumentException for invalid header names or values.
+     * @throws InvalidArgumentException for invalid header names or values.
      */
     public function withHeader($name, $value);
 
@@ -132,8 +135,8 @@ interface MessageInterface
      * @param string $name Case-insensitive header field name to add.
      * @param string|string[] $value Header value(s).
      * @return static
-     * @throws \InvalidArgumentException for invalid header names.
-     * @throws \InvalidArgumentException for invalid header values.
+     * @throws InvalidArgumentException for invalid header names.
+     * @throws InvalidArgumentException for invalid header values.
      */
     public function withAddedHeader($name, $value);
 
@@ -169,7 +172,7 @@ interface MessageInterface
      *
      * @param StreamInterface $body Body.
      * @return static
-     * @throws \InvalidArgumentException When the body is not valid.
+     * @throws InvalidArgumentException When the body is not valid.
      */
     public function withBody(StreamInterface $body);
 }

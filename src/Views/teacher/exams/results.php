@@ -16,7 +16,8 @@
             <th></th>
             </thead>
             <tbody>
-            <?php foreach ($data["results"] as $result) : ?>
+            <?php
+            foreach ($data["results"] as $result) : ?>
                 <tr>
                     <td>
                         <?= $result->getUser->first_name ?>
@@ -33,15 +34,20 @@
                     </td>
                 </tr>
                 <!--                <div>-->
-                <!--                    --><?php //= $result->getUser->first_name ?>
-                <!--                    --><?php //= $result->grade ?>
-                <!--                --><?php //= $exam->name ?>
+                <!--                    --><?php
+                //= $result->getUser->first_name ?>
+                <!--                    --><?php
+                //= $result->grade ?>
+                <!--                --><?php
+                //= $exam->name ?>
                 <!--                </div>-->
                 <!--                <form action="/teacher/exams/edit">-->
-                <!--                    <input type="hidden" name="id" value="--><?php //= $exam->id ?><!--">-->
+                <!--                    <input type="hidden" name="id" value="--><?php
+                //= $exam->id ?><!--">-->
                 <!--                    <input type="submit" value="Edit">-->
                 <!--                </form>-->
-            <?php endforeach; ?>
+            <?php
+            endforeach; ?>
             </tbody>
         </table>
     </div>

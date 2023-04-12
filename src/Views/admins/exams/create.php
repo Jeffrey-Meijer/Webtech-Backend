@@ -13,9 +13,11 @@
         <input id="name" name="name" type="text">
         <label for="teacher">Teacher:</label>
         <select id="teacher" name="teacher_id">
-            <?php foreach ($data["teachers"] as $teacher): ?>
+            <?php
+            foreach ($data["teachers"] as $teacher): ?>
                 <option value="<?= $teacher->uuid ?>"><?= $teacher->first_name ?></option>
-            <?php endforeach; ?>
+            <?php
+            endforeach; ?>
         </select>
         <input id="submit" type="submit">
     </form>

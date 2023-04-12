@@ -2,18 +2,13 @@
 
 namespace Webtech\Controllers;
 
+use Exception;
+
 class ExamsController extends GenericController
 {
-    public function view()
-    {
-        $uuid = $this->request->getRequest()->getSession("uuid");
-        $exams = isset($uuid) ? $this->model->getExams($uuid) : [];
-//        var_dump($exams);
-        $templates = ["header" => "header", "footer" => "footer"];
-        $data = ["availableExams" => $exams];
-        echo $this->templateLoader->load("exams", $data, $templates);
-    }
-
+    /**
+     * @throws Exception
+     */
     public function available()
     {
         $uuid = $this->request->getRequest()->getSession("uuid");
@@ -32,5 +27,18 @@ class ExamsController extends GenericController
         if ($inserted) {
             return $this->view();
         }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function view()
+    {
+        $uuid = $this->request->getRequest()->getSession("uuid");
+        $exams = isset($uuid) ? $this->model->getExams($uuid) : [];
+//        var_dump($exams);
+        $templates = ["header" => "header", "footer" => "footer"];
+        $data = ["availableExams" => $exams];
+        echo $this->templateLoader->load("exams", $data, $templates);
     }
 }

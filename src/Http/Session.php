@@ -2,13 +2,17 @@
 
 namespace Webtech\Http;
 
-class Session {
-    private array $session = [];
+class Session
+{
     private static ?self $instance = null;
+    private array $session = [];
 
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
-    public static function getInstance() : self {
+    public static function getInstance(): self
+    {
         if (Session::$instance == null) {
             var_dump("new instance");
             Session::$instance = new Session();
@@ -28,8 +32,11 @@ class Session {
      * @param $key
      * @return mixed
      */
-    public function getSession($key) {
-        if (isset($this->session[$key])) return $this->session[$key];
+    public function getSession($key)
+    {
+        if (isset($this->session[$key])) {
+            return $this->session[$key];
+        }
         return null;
     }
 
@@ -40,7 +47,9 @@ class Session {
     {
         $this->session = $session;
     }
-    public function addSession($key, $value) : void {
+
+    public function addSession($key, $value): void
+    {
         $this->session[$key] = $value;
     }
 }

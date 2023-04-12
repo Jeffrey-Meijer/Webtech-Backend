@@ -1,4 +1,5 @@
 <?php
+
 namespace Webtech\Http\Server;
 
 use Webtech\Http\Message\ResponseInterface;

@@ -12,7 +12,8 @@ class AuthMiddleware extends Middleware
 
     public function process(RequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (!isset($_SESSION["logged_in"]) && $request->getUri()->getPath() != "/login" && $request->getUri()->getPath() != "/register") {
+        if (!isset($_SESSION["logged_in"]) && $request->getUri()->getPath() != "/login" && $request->getUri()->getPath(
+            ) != "/register") {
             header("Location /login");
             $uri = $request->getUri()->withPath("/login");
             $request = $request->withUri($uri);

@@ -2,6 +2,8 @@
 
 namespace Webtech\Http;
 
+use Exception;
+
 class TemplateLoader
 {
     private string $templateDir;
@@ -16,15 +18,16 @@ class TemplateLoader
 
     /**
      * @param $templateName
-     * @param $data is used when the file gets included
+     * @param array $data is used when the file gets included
+     * @param string[] $templates
      * @return void
-     * @throws \Exception
+     * @throws Exception
      */
     public function load($templateName, $data = array(), $templates = array("header" => "header", "footer" => "footer"))
     {
         $templatePath = $this->templateDir . '/' . $templateName . '.php';
         if (!file_exists($templatePath)) {
-            throw new \Exception('Template not found!');
+            throw new Exception('Template not found!');
         }
         // template loading
         ob_start();

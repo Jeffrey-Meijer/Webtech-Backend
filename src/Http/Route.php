@@ -1,18 +1,22 @@
 <?php
+
 namespace Webtech\Http;
 
-class Route implements RouteInterface {
+class Route implements RouteInterface
+{
     private string $name;
     private string $method;
     private string $path;
     private ControllerInterface $controller;
 
-    public function __construct(string $name, string $method, string $path, ControllerInterface $controller)  {
+    public function __construct(string $name, string $method, string $path, ControllerInterface $controller)
+    {
         $this->name = $name;
         $this->method = $method;
         $this->path = $path;
         $this->controller = $controller;
     }
+
     public function getName(): string
     {
         return $this->name;
@@ -22,10 +26,12 @@ class Route implements RouteInterface {
     {
         $this->name = $name;
     }
+
     public function getMethod(): string
     {
         return $this->method;
     }
+
     public function setMethod(string $method): void
     {
         $this->method = $method;
@@ -41,7 +47,7 @@ class Route implements RouteInterface {
         $this->path = $path;
     }
 
-    public function getController() : ControllerInterface
+    public function getController(): ControllerInterface
     {
         return $this->controller;
     }

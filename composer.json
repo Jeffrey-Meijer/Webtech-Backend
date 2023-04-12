@@ -1,5 +1,10 @@
 {
   "autoload": {
-    "psr-4": {"Webtech\\": "src/"}
+    "psr-4": {
+      "Webtech\\": "src/"
+    }
+  },
+  "require": {
+    "ext-pdo": "*"
   }
 }

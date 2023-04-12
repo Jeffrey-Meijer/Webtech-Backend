@@ -9,7 +9,8 @@
 <div class="Admin-tools">
     <h1>Users tool</h1>
     <div style="display: grid; grid-template-columns: 1fr 1fr">
-        <?php foreach ($data["users"] as $user) : ?>
+        <?php
+        foreach ($data["users"] as $user) : ?>
             <li>
                 <?= $user->uuid ?>
                 <?= $user->first_name ?>
@@ -22,7 +23,8 @@
                     <input type="submit" value="Delete">
                 </form>
             </li>
-        <?php endforeach; ?>
+        <?php
+        endforeach; ?>
     </div>
     <h1>Create new user</h1>
     <a href="/admin/users/create">Create new user</a>

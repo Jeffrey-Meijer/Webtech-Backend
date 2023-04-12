@@ -2,8 +2,13 @@
 
 namespace Webtech\Controllers;
 
+use Exception;
+
 class IndexController extends GenericController
 {
+    /**
+     * @throws Exception
+     */
     public function view()
     {
         $templates = ["header" => "header", "footer" => "footer"];

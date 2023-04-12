@@ -1,8 +1,12 @@
 <?php
+
 namespace Webtech\Http\Message;
 
 use Http\Message\StreamInterface;
 use Http\Message\UploadedFileInterface;
+use InvalidArgumentException;
+
+use const UPLOAD_ERR_OK;
 
 interface UploadedFileFactoryInterface
 {
@@ -17,17 +21,18 @@ interface UploadedFileFactoryInterface
      *
      * @param StreamInterface $stream The underlying stream representing the
      *     uploaded file content.
-     * @param int $size The size of the file in bytes.
+     * @param int|null $size The size of the file in bytes.
      * @param int $error The PHP file upload error.
-     * @param string $clientFilename The filename as provided by the client, if any.
-     * @param string $clientMediaType The media type as provided by the client, if any.
+     * @param string|null $clientFilename The filename as provided by the client, if any.
+     * @param string|null $clientMediaType The media type as provided by the client, if any.
      *
-     * @throws \InvalidArgumentException If the file resource is not readable.
+     * @return UploadedFileInterface
+     * @throws InvalidArgumentException If the file resource is not readable.
      */
     public function createUploadedFile(
         StreamInterface $stream,
         int $size = null,
-        int $error = \UPLOAD_ERR_OK,
+        int $error = UPLOAD_ERR_OK,
         string $clientFilename = null,
         string $clientMediaType = null
     ): UploadedFileInterface;

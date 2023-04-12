@@ -15,7 +15,8 @@ class GradesModel extends GenericModel
         $this->orm = new ORM($this->connector->getConnection(), new User_exams());
     }
 
-    public function getAllGrades($uuid) {
+    public function getAllGrades($uuid)
+    {
         $results = $this->orm->selectAll("user_exams", "user_id", $uuid);
 //        var_dump($results);
         return $results;

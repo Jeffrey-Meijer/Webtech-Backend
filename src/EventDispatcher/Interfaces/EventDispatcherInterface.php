@@ -1,4 +1,5 @@
 <?php
+
 namespace Webtech\EventDispatcher\Interfaces;
 
 /**

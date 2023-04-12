@@ -1,8 +1,6 @@
 <?php
-namespace Webtech\Http\Message;
 
-use Webtech\Http\Message\RequestInterface;
-use Webtech\Http\Message\UriInterface;
+namespace Webtech\Http\Message;
 
 interface RequestFactoryInterface
 {

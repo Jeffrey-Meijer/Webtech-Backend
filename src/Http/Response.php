@@ -21,14 +21,27 @@ class Response implements ResponseInterface
         $this->setProtocolVersion('1.1');
     }
 
-    public function setHeaders(array $headers = [])
-    {
-        $this->headers = $headers;
-    }
-
     public function setContent(string $content = '')
     {
         $this->content = $content;
+    }
+
+    public function setStatusCode(int $status)
+    {
+        $this->status = $status;
+    }
+
+    public function setProtocolVersion(string $protocol)
+    {
+        $this->protocol = $protocol;
+    }
+
+    public function send()
+    {
+        $this->sendHeaders();
+        $this->sendContent();
+
+        return $this;
     }
 
     public function sendHeaders()
@@ -43,23 +56,6 @@ class Response implements ResponseInterface
     {
         echo $this->content;
         return $this;
-    }
-
-    public function send()
-    {
-        $this->sendHeaders();
-        $this->sendContent();
-
-        return $this;
-    }
-
-    public function setStatusCode(int $status)
-    {
-        $this->status = $status;
-    }
-    public function setProtocolVersion(string $protocol)
-    {
-        $this->protocol = $protocol;
     }
 
     public function getProtocolVersion()
@@ -79,10 +75,17 @@ class Response implements ResponseInterface
         return $this->headers;
     }
 
+    public function setHeaders(array $headers = [])
+    {
+        $this->headers = $headers;
+    }
+
     public function hasHeader($name)
     {
         foreach ($this->headers as $key => $value) {
-            if ($name === $key) return true;
+            if ($name === $key) {
+                return true;
+            }
         }
         return false;
     }
@@ -90,7 +93,9 @@ class Response implements ResponseInterface
     public function getHeader($name)
     {
         foreach ($this->headers as $key => $value) {
-            if ($key === $name) return $value;
+            if ($key === $name) {
+                return $value;
+            }
         }
     }
 

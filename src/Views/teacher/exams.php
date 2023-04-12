@@ -9,7 +9,8 @@
 <div class="Admin-tools">
     <h1>Exams tool</h1>
     <div style="display: grid; grid-template-columns: 1fr 1fr">
-        <?php foreach ($data["exams"] as $exam) : ?>
+        <?php
+        foreach ($data["exams"] as $exam) : ?>
             <div>
                 <?= $exam->id ?>
                 <?= $exam->name ?>
@@ -19,7 +20,8 @@
                     <input type="submit" value="See results">
                 </form>
             </div>
-        <?php endforeach; ?>
+        <?php
+        endforeach; ?>
     </div>
 </div>
 {{footer}}
