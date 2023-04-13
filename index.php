@@ -9,6 +9,7 @@ use Webtech\Controllers\GradesController;
 use Webtech\Controllers\IndexController;
 use Webtech\Controllers\TeacherController;
 use Webtech\Controllers\UsersController;
+use Webtech\Helpers\EnvLoader;
 use Webtech\Http\TemplateLoader;
 use Webtech\Middleware\AuthMiddleware;
 use Webtech\Models\AdminModel;
@@ -207,7 +208,7 @@ function onRequest($event): void
     );
     $routeFactory->createRoute(
         "teacherToolsExamsEditResult",
-        "GET",
+        "POST",
         "/teacher/exams/results/edit",
         new TeacherController("viewExamResultEdit", new TeacherModel(), $templateLoader, $event)
     );
@@ -232,6 +233,7 @@ function onRequest($event): void
     }
 }
 
+$env = new EnvLoader(__DIR__ . "/.env");
 $request = Request::fromGlobals();
 $requestHandler = new RequestHandler();
 $middleware = new AuthMiddleware();

@@ -7,10 +7,11 @@ use PDOException;
 
 class Database implements ConnectorInterface
 {
-    protected string $host = "localhost";
-    protected string $dbname = "osiris_clone";
-    protected string $username = "root";
-    protected string $password = "Achter5301!";
+    // Constants are "Undefined" because of them being dynamically created
+    protected string $host = DB_HOST ?? "";
+    protected string $dbname = DB_NAME ?? "";
+    protected string $username = DB_USER ?? "";
+    protected string $password = DB_PASS ?? "";
     private PDO $pdo;
 
     public function __construct()

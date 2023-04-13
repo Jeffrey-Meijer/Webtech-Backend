@@ -9,7 +9,7 @@
 {{header}}
 <div class="teacher-tools">
     <h1>Exams tool</h1>
-    <div>
+    <div class="container">
         <table>
             <thead>
             <th>Exam</th>
@@ -27,26 +27,13 @@
                         <?= $result->grade ?? "None" ?>
                     </td>
                     <td>
-                        <form action="/teacher/exams/results/edit">
+                        <form action="/teacher/exams/results/edit" method="post">
                             <input type="hidden" name="result" value="<?= $result->id ?>">
                             <input type="hidden" name="exam" value="<?= $result->exam_id ?>">
                             <input type="submit" value="Edit">
                         </form>
                     </td>
                 </tr>
-                <!--                <div>-->
-                <!--                    --><?php
-                //= $result->getUser->first_name ?>
-                <!--                    --><?php
-                //= $result->grade ?>
-                <!--                --><?php
-                //= $exam->name ?>
-                <!--                </div>-->
-                <!--                <form action="/teacher/exams/edit">-->
-                <!--                    <input type="hidden" name="id" value="--><?php
-                //= $exam->id ?><!--">-->
-                <!--                    <input type="submit" value="Edit">-->
-                <!--                </form>-->
             <?php
             endforeach; ?>
             </tbody>
