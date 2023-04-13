@@ -32,7 +32,7 @@ function onRequest($event): void
     $path = $event->getRequest()->getUri()->getPath();
     $method = $event->getRequest()->getMethod();
     $routeFactory = new RouteFactory();
-    $templateLoader = new TemplateLoader("./app/Views", "./app/Public/css");
+    $templateLoader = new TemplateLoader("./app/Views", "/app/Public/css");
     $routeFactory->createRoute(
         "home",
         "GET",
