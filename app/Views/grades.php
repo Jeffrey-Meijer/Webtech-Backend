@@ -8,8 +8,8 @@
 <body>
 {{header}}
 <div class="grades-page container">
-    <h1>Test</h1>
-    <table>
+    <h1>Your grades</h1>
+    <table class="table">
         <thead>
         <th>Exam</th>
         <th>Grade</th>

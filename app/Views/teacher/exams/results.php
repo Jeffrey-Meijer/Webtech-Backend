@@ -8,13 +8,13 @@
 <body>
 {{header}}
 <div class="teacher-tools">
-    <h1>Exams tool</h1>
     <div class="container">
-        <table>
+        <h1>Exams tool</h1>
+        <table class="table">
             <thead>
             <th>Exam</th>
             <th>Grade</th>
-            <th></th>
+            <th>Actions</th>
             </thead>
             <tbody>
             <?php
@@ -27,10 +27,12 @@
                         <?= $result->grade ?? "None" ?>
                     </td>
                     <td>
-                        <form action="/teacher/exams/results/edit" method="post">
-                            <input type="hidden" name="result" value="<?= $result->id ?>">
-                            <input type="hidden" name="exam" value="<?= $result->exam_id ?>">
-                            <input type="submit" value="Edit">
+                        <form action="/teacher/exams/results/edit">
+                            <div class="form-group">
+                                <input type="hidden" name="result" value="<?= $result->id ?>">
+                                <input type="hidden" name="exam" value="<?= $result->exam_id ?>">
+                                <button class="btn btn-primary" type="submit">Edit</button>
+                            </div>
                         </form>
                     </td>
                 </tr>

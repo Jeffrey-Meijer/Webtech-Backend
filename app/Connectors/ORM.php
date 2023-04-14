@@ -84,15 +84,6 @@ class ORM
         return $stmt->rowCount();
     }
 
-
-//    public function update($table, $where, $data) {
-//        $keys = array_keys($data);
-//        $values = array_values($data);
-//        $placeholders = $implode(",", array_fill(0, count($keys), "?"));
-//
-//        $stmt = $this->dbh->prepare("UPDATE $table SET ". implode(",", $keys) . " ")
-//    }
-
     public function selectAll($table, $where, $value): array
     {
         $query = "SELECT * FROM $table WHERE $where = '$value'";

@@ -7,23 +7,35 @@
 </head>
 <body>
 {{header}}
-<div class="teacher-tools">
-    <h1>Exams tool</h1>
-    <div style="display: grid; grid-template-columns: 1fr 1fr">
+<div class="teacher-tools container">
+    <table class="table">
+        <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+        </thead>
+        <tbody>
         <?php
         foreach ($data["exams"] as $exam) : ?>
-            <div>
-                <?= $exam->id ?>
-                <?= $exam->name ?>
-                <form action="/teacher/exams/results" method="post">
-                    <input type="hidden" name="exam" value="<?= $exam->id ?>">
-                    <input type="hidden" name="user">
-                    <input type="submit" value="See results">
-                </form>
-            </div>
+            <tr>
+                <td>
+                    <?= $exam->id ?>
+                </td>
+                <td>
+                    <?= $exam->name ?>
+                </td>
+                <td>
+                    <form action="/teacher/exams/results">
+                        <input type="hidden" name="exam" value="<?= $exam->id ?>">
+                        <input type="hidden" name="user">
+                        <button class="btn btn-primary" type="submit" value="See results">See results</button>
+                    </form>
+                </td>
+            </tr>
         <?php
         endforeach; ?>
-    </div>
+        </tbody>
+    </table>
 </div>
 {{footer}}
 </body>

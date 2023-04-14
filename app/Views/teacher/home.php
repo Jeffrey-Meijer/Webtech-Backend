@@ -7,10 +7,14 @@
 </head>
 <body>
 {{header}}
-<div class="Teacher-tools" style="display: grid; grid-template-columns: 1fr 1fr">
+<div class="teacher-tools container">
     <a href="/teacher/exams">
         <div class="card">
-            <h1>Examen resultaten</h1>
+            <div class="card-body">
+                <div class="card-title">
+                    <h1>Examen resultaten</h1>
+                </div>
+            </div>
         </div>
     </a>
 </div>

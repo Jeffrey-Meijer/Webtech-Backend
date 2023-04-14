@@ -33,8 +33,15 @@ class TeacherController extends GenericController
         $body = $this->request->getRequest()->getBody();
         $id = $body["result"];
         $result = $this->getModel()->getResult($id);
-        $data = ["result" => $result];
-        $this->templateLoader->load("teacher/exams/edit", $data);
+        //Check if currently logged in user is the actual teacher_id that has access
+        $user_uuid = $this->request->getRequest()->getSession("uuid");
+        $result_check = $result->getExam->teacher_id == $user_uuid;
+        if ($result_check) {
+            $data = ["result" => $result];
+            $this->templateLoader->load("teacher/exams/edit", $data);
+        } else {
+            $this->viewExams();
+        }
     }
 
     /**
@@ -58,7 +65,14 @@ class TeacherController extends GenericController
         $body = $this->request->getRequest()->getBody();
         $exam_id = $exam_id == null ? $body["exam"] : $exam_id;
         $results = $this->getModel()->getExamResults($exam_id);
-        $data = ["results" => $results];
-        $this->templateLoader->load("teacher/exams/results", $data);
+        //Check if currently logged in user is the actual teacher_id that has access
+        $user_uuid = $this->request->getRequest()->getSession("uuid");
+        $result_check = $results[0]->getExam->teacher_id == $user_uuid;
+        if ($result_check) {
+            $data = ["results" => $results];
+            $this->templateLoader->load("teacher/exams/results", $data);
+        } else {
+            $this->viewExams();
+        }
     }
 }

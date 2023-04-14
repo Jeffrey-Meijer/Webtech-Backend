@@ -29,7 +29,7 @@ class TemplateLoader
         $templateName,
         array $data = array(),
         array $templates = array("header" => "header", "footer" => "footer"),
-        array $css = array("css" => "global")
+        array $css = array("css" => "bootstrap")
     ): void {
         $templatePath = $this->templateDir . '/' . $templateName . '.php';
         if (!file_exists($templatePath)) {

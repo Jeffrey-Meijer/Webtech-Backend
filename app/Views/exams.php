@@ -8,17 +8,34 @@
 <body>
 {{header}}
 <div class="exams container">
-    <?php
-    foreach ($data["availableExams"] as $availableExam): ?>
-        <li>
-            <?= sprintf("%d => %s", $availableExam->id, $availableExam->name); ?>
-            <form action="/exams" method="post">
-                <input type="hidden" name="id" value="<?= $availableExam->id ?>">
-                <input type="submit" value="Apply">
-            </form>
-        </li>
-    <?php
-    endforeach; ?>
+    <h1>Available exams</h1>
+    <table class="table">
+        <thead>
+        <th>ID</th>
+        <th>Exam</th>
+        <th>Actions</th>
+        </thead>
+        <tbody>
+        <?php
+        foreach ($data["availableExams"] as $availableExam): ?>
+            <tr>
+                <td>
+                    <?= $availableExam->id ?>
+                </td>
+                <td>
+                    <?= $availableExam->name ?>
+                </td>
+                <td>
+                    <form action="/exams" method="post">
+                        <input type="hidden" name="id" value="<?= $availableExam->id ?>">
+                        <button class="btn btn-primary" type="submit">Apply</button>
+                    </form>
+                </td>
+            </tr>
+        <?php
+        endforeach; ?>
+        </tbody>
+    </table>
 </div>
 {{footer}}
 </body>
