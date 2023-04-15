@@ -67,12 +67,16 @@ class TeacherController extends GenericController
         $results = $this->getModel()->getExamResults($exam_id);
         //Check if currently logged in user is the actual teacher_id that has access
         $user_uuid = $this->request->getRequest()->getSession("uuid");
-        $result_check = $results[0]->getExam->teacher_id == $user_uuid;
-        if ($result_check) {
-            $data = ["results" => $results];
-            $this->templateLoader->load("teacher/exams/results", $data);
-        } else {
+        if (empty($results)) {
             $this->viewExams();
+        } else {
+            $result_check = $results[0]->getExam->teacher_id == $user_uuid;
+            if ($result_check) {
+                $data = ["results" => $results];
+                $this->templateLoader->load("teacher/exams/results", $data);
+            } else {
+                $this->viewExams();
+            }
         }
     }
 }
